@@ -11,6 +11,13 @@ ReignFlow trains and evaluates rainfall–runoff models from daily NetCDF data.
 LSTM, LSTM_mask, Transformer, and differentiable HBV share a command-line
 interface, data preparation, checkpoint handling, and basin-wise metrics.
 
+ReignFlow builds on [hydroDL](https://github.com/mhpi/hydroDL), its
+[dPL-HBV implementation](https://github.com/mhpi/dPLHBVrelease), and selected
+[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) metrics,
+along with other upstream contributions. The
+[acknowledgements](acknowledgements.md) identify each component's source and
+ReignFlow's modifications.
+
 ## Start with a complete run
 
 1. [Install ReignFlow](getting-started/installation.md).

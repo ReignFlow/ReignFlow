@@ -5,6 +5,10 @@ through a physical simulation. Its targets and loss are in physical runoff
 units. Start with the following small CPU run to check the whole path,
 including the parameter export.
 
+The implementation is modified from the hydroDL-based dPL-HBV code. Read the
+[source and modifications](../models/dhbv.md#source-and-modifications) for its
+upstream attribution and scientific reference.
+
 ## Required alignment
 
 ```text

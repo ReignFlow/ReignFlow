@@ -62,6 +62,7 @@ nav:
       - Overview: index.md
       - Installation: getting-started/installation.md
       - Quick Start: getting-started/quickstart.md
+      - Acknowledgements: acknowledgements.md
   - Data:
       - CAMELS and Profiles: data/camels.md
       - Your Own Daily Data: data/custom-data.md

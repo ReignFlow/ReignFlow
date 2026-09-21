@@ -42,7 +42,10 @@ of commits. Review portable provenance before sharing it; scientific metadata
 remains even when paths are redacted. Load `.pt` files only from trusted sources.
 
 Document new model sources and modifications using the
-[integration guide](model-integration.md). Preserve upstream copyright,
+[integration guide](model-integration.md). Update the
+[acknowledgements and code provenance](../acknowledgements.md), the relevant
+model or metric page, and `THIRD_PARTY_NOTICES.md` in the full source checkout
+together. Preserve upstream copyright,
 attribution, and license files. This preview retains the repository's
 [LICENSE](https://github.com/jayhydro/49.ReignFlow_Release/blob/main/LICENSE).
 The full code distribution also requires its `THIRD_PARTY_NOTICES.md` and

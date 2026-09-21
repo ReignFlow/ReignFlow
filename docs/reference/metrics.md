@@ -4,6 +4,18 @@ The CLI reports **NSE, KGE, Corr, and RMSE** separately for each target. Each
 metric is calculated per basin and summarized with `numpy.nanmedian` across
 basins. This differs from pooling all basin observations into one time series.
 
+## Implementation sources
+
+The selected **FLV and FMS** calculations are adapted from
+[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) to
+ReignFlow's NumPy array API. The `ubRMSE` independent-mean convention and `FHV`
+selection rounding follow [hydroDL](https://github.com/mhpi/hydroDL).
+These details are part of the numerical definitions used in comparisons.
+
+See [acknowledgements and code provenance](../acknowledgements.md) for the
+component inventory and the
+[NeuralHydrology software citation](https://doi.org/10.21105/joss.04050).
+
 ## Python API
 
 ```python

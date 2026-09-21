@@ -6,9 +6,7 @@ MkDocs build configuration. Model implementations, training scripts, scientific
 datasets, checkpoints, and the development repository's Git history are not
 included.
 
-The planned site address is
-<https://jayhydro.github.io/49.ReignFlow_Release/>. This address becomes available
-after GitHub Pages is enabled and the deployment workflow succeeds.
+Read the [documentation preview](https://jayhydro.github.io/49.ReignFlow_Release/).
 
 ## Preview locally
 
@@ -44,6 +42,15 @@ main-branch builds only from `jayhydro/49.ReignFlow_Release`.
 
 Keep code publication as a separate change. Inspect the files before the first
 push: a branch in a public repository is already visible before it is merged.
+
+## Acknowledgements
+
+ReignFlow builds on [hydroDL](https://github.com/mhpi/hydroDL),
+[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology), and other
+upstream projects. Its dHBV implementation is modified from the hydroDL-based
+[dPL-HBV release](https://github.com/mhpi/dPLHBVrelease).
+See [acknowledgements and code provenance](docs/acknowledgements.md) for the
+component sources, ReignFlow's modifications, and scientific references.
 
 ## License
 

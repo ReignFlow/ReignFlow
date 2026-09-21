@@ -7,6 +7,11 @@ runs a one-layer `torch.nn.LSTM`, then applies output dropout and a linear
 projection to the target channels. The model returns the full input-length
 sequence; the trainer uses its final `pred_len` steps.
 
+The plain LSTM implementation is adapted from
+[`kratzert/multiple_forcing`](https://github.com/kratzert/multiple_forcing).
+See [acknowledgements and code provenance](../acknowledgements.md) for its
+scope and the related loss implementations.
+
 | Setting | Meaning |
 |---|---|
 | `--d_model` | Recurrent hidden size; default 256 |
@@ -18,7 +23,8 @@ and use the [CAMELS tutorial](../tutorials/first-lstm.md) for observations.
 
 ## LSTM_mask
 
-`--model LSTM_mask` wraps a cuDNN LSTM adapted from hydroDL-style code.
+`--model LSTM_mask` wraps a cuDNN LSTM adapted from
+[hydroDL](https://github.com/mhpi/hydroDL), including its weight DropConnect code.
 `--dropout` controls DropConnect on input and recurrent weight matrices during
 training, rather than the plain LSTM's output dropout. The adapter calls
 `torch._cudnn_rnn` and requires CUDA. Its CPU failure explicitly says

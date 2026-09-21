@@ -4,6 +4,20 @@
 multi-component HBV and gamma routing. It implements the dPL-HBV approach
 through a concrete ReignFlow adapter and physical-variable contract.
 
+## Source and modifications
+
+**ReignFlow's dHBV is modified from the hydroDL-based dPL-HBV implementation**
+by Dapeng Feng and collaborators. The direct code source for HBV simulation
+and gamma routing is [`mhpi/dPLHBVrelease`](https://github.com/mhpi/dPLHBVrelease),
+part of the [hydroDL](https://github.com/mhpi/hydroDL) lineage.
+
+ReignFlow adapts the implementation to its batch-first interfaces, current
+PyTorch APIs, explicit device handling, fp32 HBV execution, checkpoint handling,
+parameter export, and finite-value validation. The scientific approach is
+described by [Feng et al. (2022)](https://doi.org/10.1029/2022WR032404).
+See [acknowledgements and code provenance](../acknowledgements.md#dhbv-provenance-and-modifications)
+for the source history and citation.
+
 ## Data flow
 
 ```text
