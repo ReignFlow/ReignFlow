@@ -1,0 +1,99 @@
+site_name: ReignFlow Documentation Preview
+site_description: Preview of the ReignFlow user documentation; the public code release is being prepared
+site_url: https://jayhydro.github.io/49.ReignFlow_Release/
+repo_url: https://github.com/jayhydro/49.ReignFlow_Release
+repo_name: jayhydro/49.ReignFlow_Release
+edit_uri: edit/main/docs/
+strict: true
+
+validation:
+  nav:
+    omitted_files: warn
+  links:
+    not_found: warn
+    unrecognized_links: warn
+    anchors: warn
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  icon:
+    logo: material/water-outline
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    scheme: default
+    primary: custom
+    accent: custom
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Start:
+      - Overview: index.md
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quickstart.md
+  - Data:
+      - CAMELS and Profiles: data/camels.md
+      - Your Own Daily Data: data/custom-data.md
+      - Select Stations: guides/station-selection.md
+      - Variables and Periods: guides/data-selection.md
+  - Models:
+      - Choose a Model: models/overview.md
+      - LSTM Models: models/lstm.md
+      - Transformer: models/transformer.md
+      - Differentiable HBV: models/dhbv.md
+  - Experiments:
+      - Workflow: guides/training.md
+      - LSTM on CAMELS: tutorials/first-lstm.md
+      - Train dHBV: tutorials/dhbv.md
+      - Training Controls: guides/training-control.md
+      - Validation and Selection: guides/validation-and-model-selection.md
+      - Forecasting: guides/forecast.md
+      - GPU Jobs on Slurm: guides/hpc.md
+  - Reuse Models:
+      - Resume and Warm Start: guides/resume-and-warm-start.md
+      - Evaluate and Share: guides/evaluate-and-share.md
+      - HBV Parameter Files: guides/hbv-parameters.md
+  - Reference:
+      - CLI: reference/cli.md
+      - Run Outputs: reference/outputs.md
+      - Checkpoints and Provenance: guides/checkpoints.md
+      - Metrics: reference/metrics.md
+      - Benchmarks: reference/benchmarks.md
+      - Troubleshooting: reference/troubleshooting.md
+  - Development:
+      - Add a Model: development/model-integration.md
+      - Testing: development/testing.md
+      - Documentation and Pages: development/documentation.md
+      - PyCharm Debugging: development/pycharm.md
+      - Contributing: development/contributing.md

@@ -1,0 +1,143 @@
+:root {
+  --md-primary-fg-color: #0f6f67;
+  --md-primary-fg-color--light: #16877d;
+  --md-primary-fg-color--dark: #0a514c;
+  --md-accent-fg-color: #d95648;
+  --rf-ink: #172321;
+  --rf-muted: #53635f;
+  --rf-line: #d6e0dd;
+  --rf-surface: #f5f8f7;
+  --rf-sun: #d99d24;
+}
+
+* {
+  letter-spacing: 0 !important;
+}
+
+body {
+  color: var(--rf-ink);
+}
+
+.md-header,
+.md-tabs {
+  background: #123f3b;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: var(--rf-ink);
+  font-weight: 650;
+}
+
+.md-typeset h1 {
+  margin-bottom: 0.55rem;
+}
+
+.md-typeset a {
+  text-underline-offset: 0.16em;
+}
+
+.md-typeset code,
+.md-typeset pre,
+.md-typeset .highlight {
+  border-radius: 4px;
+}
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--rf-line);
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.rf-intro {
+  max-width: 58rem;
+  padding: 0.3rem 0 1.1rem;
+}
+
+.rf-intro__lead {
+  max-width: 48rem;
+  color: var(--rf-muted);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.rf-figure {
+  margin: 1rem 0 1.7rem;
+}
+
+.rf-figure img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--rf-line);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.rf-figure figcaption {
+  margin-top: 0.45rem;
+  color: var(--rf-muted);
+  font-size: 0.78rem;
+}
+
+.rf-routes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.1rem 0 1.8rem;
+}
+
+.rf-route {
+  min-width: 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--rf-line);
+  border-left: 4px solid var(--md-primary-fg-color);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.rf-route:nth-child(2) {
+  border-left-color: var(--md-accent-fg-color);
+}
+
+.rf-route:nth-child(3) {
+  border-left-color: var(--rf-sun);
+}
+
+.rf-route strong,
+.rf-route span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.rf-route span {
+  margin-top: 0.35rem;
+  color: var(--rf-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.rf-contract {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem 1.2rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--rf-line);
+  border-radius: 6px;
+  background: var(--rf-surface);
+}
+
+.rf-contract p {
+  margin: 0;
+}
+
+@media screen and (max-width: 52rem) {
+  .rf-routes,
+  .rf-contract {
+    grid-template-columns: 1fr;
+  }
+
+  .rf-intro__lead {
+    font-size: 1rem;
+  }
+}
