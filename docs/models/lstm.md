@@ -2,6 +2,9 @@
 
 ## LSTM
 
+An LSTM carries hidden and cell states through the input window, allowing
+earlier rainfall and catchment conditions to influence today's runoff estimate.
+
 `--model LSTM` concatenates normalized forcing and repeated basin attributes,
 runs a one-layer `torch.nn.LSTM`, then applies output dropout and a linear
 projection to the target channels. The model returns the full input-length
@@ -48,6 +51,10 @@ loss = mean((z_prediction - z_observation)^2 / (basin_std + 0.1)^2)
 The mean is over the valid target elements. `basin_std` uses NumPy's population
 standard deviation; it is distinct from the global target standard deviation
 used by the z-score transform.
+
+Basin weighting downscales errors in basins with more variable runoff.
+Actual contributions still depend on prediction errors, valid sample counts,
+and the stabilizing `+0.1` term.
 
 This is the formula implemented in this checkout. There is no `target_unit`
 or `freq` CLI option, no required profile `target_unit`, and no timestep-aware

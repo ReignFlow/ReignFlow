@@ -47,6 +47,14 @@ source for this component is the dPL-HBV release identified above.
 When reporting experiments, cite the methods and software used as well as the
 ReignFlow version. In particular:
 
+- **Hydrologic Transformer:** Liu, J., Bian, Y., Lawson, K., and Shen, C. (2024).
+  Probing the limit of hydrologic predictability with the Transformer network.
+  *Journal of Hydrology*, 637, 131389.
+  [doi:10.1016/j.jhydrol.2024.131389](https://doi.org/10.1016/j.jhydrol.2024.131389).
+- **Architecture benchmarking:** Liu, J., et al. (2025).
+  From RNNs to Transformers: benchmarking deep learning architectures for
+  hydrologic prediction. *Hydrology and Earth System Sciences*, 29, 6811–6828.
+  [doi:10.5194/hess-29-6811-2025](https://doi.org/10.5194/hess-29-6811-2025).
 - **dPL-HBV:** Feng, D., Liu, J., Lawson, K., and Shen, C. (2022).
   Differentiable, learnable, regionalized process-based models with multiphysical
   outputs can approach state-of-the-art hydrologic prediction accuracy.
@@ -58,11 +66,12 @@ ReignFlow version. In particular:
   [doi:10.21105/joss.04050](https://doi.org/10.21105/joss.04050).
 
 The linked upstream repositories provide additional method references and
-their software citation instructions.
+their software citation instructions. CAMELS users should also cite the
+[data sources](data/camels.md).
 
 ## Notices and maintenance
 
-This page summarizes the full source checkout's `THIRD_PARTY_NOTICES.md`.
+The code inventory above summarizes the full source checkout's `THIRD_PARTY_NOTICES.md`.
 That inventory records the audited upstream revisions, local scope, and
 locations of the complete license texts. Acknowledgements and paper citations
 supplement the upstream copyright and license notices; they do not replace

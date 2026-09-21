@@ -30,12 +30,18 @@ code does not automatically enforce this scientific separation.
 | Neural forecast | `seq_len + pred_len` | `seq_len` days |
 | dHBV regression profile | `seq_len` | None; warm-up is internal |
 
-```text
-regression: [-------- input window --------]
-                              [-- targets --]
+Each sample is one basin's input window. For a neural model with
+`seq_len=4` and `pred_len=1`:
 
-forecast:   [-------- input window --------][-- targets --]
-```
+| Input days | Regression target | Forecast target |
+|---|---|---|
+| 1–4 | Day 4 | Day 5 |
+| 2–5 | Day 5 | Day 6 |
+| 3–6 | Day 6 | Day 7 |
+
+Here, regression estimates runoff on the last input day; forecasting predicts the
+following day. Training batches combine windows across basins according to
+the [sampling policy](training-control.md#window-sampling).
 
 For neural models, earlier history supplies inputs; targets begin in the
 requested period when complete history is available. Training statistics are

@@ -14,6 +14,10 @@ options express your dataset.
   attribute on `[station_ids]`.
 - Supply `lat` and `lon` only if you enable `--add_coords`.
 
+The reader stacks the configured forcing and target variables into
+`[basin, time, feature]` arrays internally. Each NetCDF variable uses the
+dimensions listed above.
+
 The current loader uses calendar days for history and output-length checks;
 the Dataset requests daily calendar features. Hourly or irregular data require
 code changes and validation, not just a renamed variable or a `freq` value.

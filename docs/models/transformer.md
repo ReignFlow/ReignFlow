@@ -1,10 +1,22 @@
 # Transformer
 
+Self-attention compares days within the input window so the model can combine
+information from distant rainfall events directly.
+
 `--model Transformer` uses a linear forcing/attribute embedding, a linear
 embedding of daily calendar features, and stacked attention encoder layers.
 The encoder uses ALiBi distance biases, pre-layer normalization, residual
 connections, and feed-forward blocks. A final normalization, GELU, and linear
 head produce normalized runoff at every input position.
+
+## Research context
+
+The implementation follows the base hydrologic Transformer studied by
+[Liu et al. (2024)](https://doi.org/10.1016/j.jhydrol.2024.131389), with the
+ALiBi and pre-layer normalization changes described above.
+[Liu et al. (2025)](https://doi.org/10.5194/hess-29-6811-2025) provides broader
+architecture comparisons. Use the [current model overview](overview.md) for
+the architectures and tasks supported by this checkout.
 
 ## Configuration
 

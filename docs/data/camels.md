@@ -1,5 +1,11 @@
 # CAMELS NetCDF
 
+CAMELS (Catchment Attributes and Meteorology for Large-sample Studies) combines
+meteorological inputs, observed streamflow, and catchment attributes for US
+basins. Cite [Newman et al. (2015)](https://doi.org/10.5194/hess-19-209-2015)
+for the hydrometeorological data and
+[Addor et al. (2017)](https://doi.org/10.5194/hess-21-5293-2017) for the attributes.
+
 ReignFlow loads daily forcing, runoff, and basin attributes from one NetCDF
 file. Downloaded archives and generated NetCDF files stay outside version
 control. The [quick start](../getting-started/quickstart.md) supplies synthetic
@@ -106,6 +112,10 @@ Forcings: `daymet_prcp`, `daymet_tmean`, `daymet_pet`.
 <!-- END GENERATED: profiles -->
 
 ## Normalization contract
+
+Precipitation, temperature, and basin attributes have different units and
+scales. Standardization rescales features to help optimization. Use training
+statistics for exploratory normalization plots as well as model inputs.
 
 The training loader fits one mean and population standard deviation per
 forcing and target over the loaded stations and dates. Stations lacking all
