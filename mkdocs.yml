@@ -1,8 +1,8 @@
 site_name: ReignFlow Documentation Preview
 site_description: Preview of the ReignFlow user documentation; the public code release is being prepared
-site_url: https://jayhydro.github.io/49.ReignFlow_Release/
-repo_url: https://github.com/jayhydro/49.ReignFlow_Release
-repo_name: jayhydro/49.ReignFlow_Release
+site_url: https://reignflow.github.io/ReignFlow/
+repo_url: https://github.com/ReignFlow/ReignFlow
+repo_name: ReignFlow/ReignFlow
 edit_uri: edit/main/docs/
 strict: true
 

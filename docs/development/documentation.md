@@ -65,13 +65,13 @@ and omitted Transformer settings in compatibility hashes.
 In repository **Settings → Pages**, select **GitHub Actions** as the publishing
 source. The Documentation Preview workflow builds on pull requests, main pushes,
 and manual dispatch. Only main-branch non-PR runs in
-`jayhydro/49.ReignFlow_Release` upload the `site/` artifact and deploy through
+`ReignFlow/ReignFlow` upload the `site/` artifact and deploy through
 the `github-pages` environment. The repository check prevents this preview
 workflow from deploying if it is copied to a different repository.
 See GitHub's [publishing-source guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 and [custom workflow requirements](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
-The planned site is [ReignFlow Documentation Preview](https://jayhydro.github.io/49.ReignFlow_Release/).
+The site address is [ReignFlow Documentation Preview](https://reignflow.github.io/ReignFlow/).
 After publication, confirm the workflow's deployed URL, homepage, navigation,
 preview banner, and search. A local strict build only verifies the artifact;
 the successful GitHub Pages deployment establishes that the preview is online.

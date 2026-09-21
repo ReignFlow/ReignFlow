@@ -37,17 +37,17 @@ jobs:
         run: python -m mkdocs build --strict
 
       - name: Configure GitHub Pages
-        if: github.repository == 'jayhydro/49.ReignFlow_Release' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.repository == 'ReignFlow/ReignFlow' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v5
 
       - name: Upload GitHub Pages artifact
-        if: github.repository == 'jayhydro/49.ReignFlow_Release' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.repository == 'ReignFlow/ReignFlow' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v4
         with:
           path: site
 
   deploy:
-    if: github.repository == 'jayhydro/49.ReignFlow_Release' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.repository == 'ReignFlow/ReignFlow' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     permissions:

@@ -47,7 +47,7 @@ Document new model sources and modifications using the
 model or metric page, and `THIRD_PARTY_NOTICES.md` in the full source checkout
 together. Preserve upstream copyright,
 attribution, and license files. This preview retains the repository's
-[LICENSE](https://github.com/jayhydro/49.ReignFlow_Release/blob/main/LICENSE).
+[LICENSE](https://github.com/ReignFlow/ReignFlow/blob/main/LICENSE).
 The full code distribution also requires its `THIRD_PARTY_NOTICES.md` and
 the accompanying upstream license files.
 

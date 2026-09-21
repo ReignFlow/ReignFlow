@@ -6,7 +6,7 @@ MkDocs build configuration. Model implementations, training scripts, scientific
 datasets, checkpoints, and the development repository's Git history are not
 included.
 
-Read the [documentation preview](https://jayhydro.github.io/49.ReignFlow_Release/).
+Read the [documentation preview](https://reignflow.github.io/ReignFlow/).
 
 ## Preview locally
 
@@ -38,7 +38,7 @@ the distinction between a site build and the earlier code cross-checks.
 
 In GitHub repository **Settings → Pages**, choose **GitHub Actions**. The
 Documentation Preview workflow builds pull requests and publishes successful
-main-branch builds only from `jayhydro/49.ReignFlow_Release`.
+main-branch builds only from `ReignFlow/ReignFlow`.
 
 Keep code publication as a separate change. Inspect the files before the first
 push: a branch in a public repository is already visible before it is merged.

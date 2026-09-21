@@ -4,7 +4,7 @@ ReignFlow builds on the work of the hydroDL, dPL-HBV, NeuralHydrology,
 multiple_forcing, and PyETo authors and contributors. We thank these projects
 for making their research and implementations available.
 
-The [public release repository](https://github.com/jayhydro/49.ReignFlow_Release)
+The [public release repository](https://github.com/ReignFlow/ReignFlow)
 currently contains documentation only. The implementation paths below refer
 to the full ReignFlow source checkout described by this documentation.
 
