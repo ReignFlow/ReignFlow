@@ -29,6 +29,10 @@ from that verified result. Do not invent new defaults by editing generated table
 
 ## Validation coverage
 
+The [validation record](../reference/validation.md) identifies the source
+snapshot, environment, and results of the latest recorded documentation check.
+The matrix below explains what each check establishes.
+
 The following matrix records the cross-checks used in the development checkout
 to prepare the documentation. The source files and runtime tests named here
 belong to that checkout, not to this documentation-only repository.

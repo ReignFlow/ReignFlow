@@ -4,6 +4,17 @@ Begin with the defaults used by a complete tutorial, then change one setting
 at a time. The [CLI reference](../reference/cli.md) is generated from the parser;
 this page explains effects that a default-value table cannot capture.
 
+## What to change first
+
+| Stage | Settings to consider |
+|---|---|
+| Before using your own data | File path, variables, stations, units, and split dates |
+| First LSTM baseline | Keep the tutorial's small model, `MaskedMSE`, AdamW, constant learning rate, and fp32; use `--save_best` with disjoint validation |
+| Controlled experiments | Change window length, loss, model size, scheduler, or sampler one at a time; evaluate AMP, compilation, and SWA after the baseline works |
+
+These are starting choices, not a claim of optimal accuracy. Published
+benchmark comparisons require their complete recorded recipe.
+
 ## Optimizer and loss
 
 The optimizer registry contains `AdamW`, `SGD`, and `Adadelta`. All receive

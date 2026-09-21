@@ -4,12 +4,20 @@ Benchmark results belong to a particular source version, data selection,
 training recipe, and numerical environment. A passing tutorial establishes
 that a workflow runs; it does not reproduce a full benchmark.
 
+The [validation record](validation.md) describes the current documentation
+checks separately from these historical scientific runs.
+
 ## Historical records
 
 The following rounded scores are retained from the repository's existing
 benchmark registry. **They predate the inverse-normalization correction and
 are not newly verified scores for the current code.** Some records additionally
 predate the dPL-to-dHBV identifier change.
+
+**Cross-row comparability has not been established.** The rows use different
+forcing inputs and basin sets, including 531 versus 671 basins. Before ranking
+models, match stations, dates, forcings, loss, weight selection, normalization,
+and seed protocol. The table is an inventory of recorded experiments.
 
 | Model/recipe | Basins | Median NSE | Record |
 |---|---:|---:|---|

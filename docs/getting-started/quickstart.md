@@ -1,9 +1,13 @@
 # Quick start
 
-Run these blocks in order in **one Bash session**, from the repository root
-with your ReignFlow environment active. They create three synthetic basins and
-exercise training, validation, checkpoint evaluation, and bundle loading on CPU.
-No CAMELS download is required. The resulting scores describe artificial data.
+Create a small daily dataset, train an LSTM on CPU, and inspect its runoff
+predictions. This example uses **three synthetic basins** and two training
+epochs. It checks the workflow with a small model.
+
+Complete [installation](installation.md) first. Run the commands from the
+full source checkout with the ReignFlow environment active. The public preview
+currently provides documentation; the package and example script accompany
+the future code release.
 
 ## 1. Create the demonstration data
 
@@ -12,95 +16,108 @@ No CAMELS download is required. The resulting scores describe artificial data.
 python examples/quickstart/create_demo_data.py --output output/demo/CAMELS.nc
 ```
 
-The file contains daily forcing and runoff from December 1999 through August
-2000, two static attributes, and string station IDs. Names match the CAMELS
-schema, but every value is generated for this example.
+The file contains daily meteorological inputs, two basin attributes, and
+artificial runoff from December 1999 through August 2000. No CAMELS download
+is needed. *Forcing* means time-varying inputs such as rainfall and temperature;
+*attributes* describe a basin, such as its area and elevation.
 
-## 2. Train and select a checkpoint
+## 2. Train the LSTM
 
-The Bash array keeps the same data and model settings for later evaluations.
-Training uses January–March, validation April, and testing May–June.
+Copy this complete command. It trains on January–March, uses April to choose
+the saved weights, and evaluates those weights on May–June.
 
 <!-- example: quickstart-train -->
 ```bash
-demo_args=(
-  --task_name regression --model LSTM --data CAMELS
-  --input_nc_file output/demo/CAMELS.nc --all_stations
-  --time_series_variables daymet_prcp,daymet_tmean,daymet_pet
-  --static_variables area_gages2,elev_mean
-  --train_date_list 2000-01-01,2000-03-31
-  --val_date_list 2000-04-01,2000-04-30
-  --test_date_list 2000-05-01,2000-06-30
-  --seq_len 14 --pred_len 1 --d_model 16 --dropout 0
-  --batch_size 32 --epochs 2 --learning_rate 0.001
-  --do_eval --device cpu --seed 42
-)
-python -m reignflow "${demo_args[@]}" \
-  --save_best --export_inference_bundle \
-  --output_dir output/demo/lstm --des quickstart
-
-run_dir="$(python -c 'from pathlib import Path; print(max(Path("output/demo/lstm").glob("regression_LSTM_*"), key=lambda p: p.name))')"
-printf '%s\n' "$run_dir"
+python -m reignflow \
+  --task_name regression --model LSTM --data CAMELS \
+  --input_nc_file output/demo/CAMELS.nc --all_stations \
+  --time_series_variables daymet_prcp,daymet_tmean,daymet_pet \
+  --static_variables area_gages2,elev_mean \
+  --train_date_list 2000-01-01,2000-03-31 \
+  --val_date_list 2000-04-01,2000-04-30 \
+  --test_date_list 2000-05-01,2000-06-30 \
+  --seq_len 14 --pred_len 1 --d_model 16 --dropout 0 \
+  --batch_size 32 --epochs 2 --learning_rate 0.001 \
+  --do_eval --device cpu --seed 42 \
+  --save_best --output_dir output/demo/lstm --des quickstart
 ```
 
-The run prints training loss, validation loss and median NSE, then test NSE,
-KGE, correlation, and RMSE. `--save_best` chooses the highest finite median
-validation NSE and restores those weights for the final test. Scores and
-timings depend on the software and hardware; a particular score is not an
-installation requirement.
+`seq_len=14` supplies 14 input days; `pred_len=1` estimates runoff on the last
+of those days. `--save_best` chooses the weights with the highest validation
+NSE. Keep the other settings for this first run; the
+[experiment guide](../guides/training.md) explains how to adapt them.
 
-The run directory contains `checkpoints/best.pt`, the latest numbered epoch,
-`results/pred.npy`, `results/true.npy`, and `inference_bundle/`. The two physical
-result arrays have shape **`[3, 61, 1]`**: three basins, 61 test days, one target.
-See [run outputs](../reference/outputs.md) for the other files.
+## 3. Inspect the predictions
 
-## 3. Evaluate the saved checkpoint
+Follow the output directory printed by the command, under `output/demo/lstm/`.
+Open **`results/feature_Runoff.png`** to compare predicted and observed runoff.
+The program also prints test NSE, KGE, correlation, and RMSE.
 
-<!-- example: quickstart-replay -->
-```bash
-python -m reignflow "${demo_args[@]}" --do_test \
-  --resume_from_checkpoint "$run_dir" --checkpoint_selector best \
-  --output_dir output/demo/replay --des replay
-```
+| Check | Expected for this example |
+|---|---|
+| Saved predictions and observations | `results/pred.npy` and `results/true.npy` |
+| Array shape | `[3, 61, 1]`: three basins, 61 test days, one target |
+| Time interval and units | 1 May–30 June 2000; runoff in mm/day |
+| Successful workflow | Training and testing finish, with finite predictions and metrics |
 
-This creates a separate evaluation run. Keep `--do_eval` in `demo_args`:
-the loaded validation split contributes to the checkpoint's data fingerprint.
-Use `.pt` files only from a trusted source.
+![Observed and predicted synthetic runoff for the first basin after two LSTM training epochs](../assets/quickstart_runoff.png)
 
-## 4. Load the exported inference bundle
+This is an actual CPU run of the commands above. The optional script below
+adds dates and units to the same saved arrays. Two epochs can leave peaks
+poorly captured; the example does not establish hydrological prediction skill.
+The [validation record](../reference/validation.md) identifies the source
+snapshot and environment. Your scores can differ across environments.
 
-<!-- example: quickstart-bundle -->
-```bash
-python -m reignflow "${demo_args[@]}" --do_test \
-  --inference_bundle "$run_dir/inference_bundle" \
-  --output_dir output/demo/bundle-replay --des bundle-replay
-```
+| Metric | How to read it |
+|---|---|
+| NSE | 1 is a perfect match; 0 has the same squared error as predicting the observed mean over the evaluated samples; negative values are worse than that reference |
+| RMSE | Typical error magnitude in the target units; 0 is a perfect match. Here the unit is mm/day |
 
-The bundle uses safetensors and numeric/JSON sidecars. This command evaluates
-the same selected weights and canonical data as the checkpoint command. The
-documentation test compares their predictions, observations, and metrics.
-Bundles currently require matching data, including target observations;
-see [evaluation and sharing](../guides/evaluate-and-share.md).
+Scores summarize all three basins by their median; the figure shows only the
+first basin. A short synthetic run may have low NSE even when installation
+and data alignment are correct. For real experiments, inspect the curves
+and [diagnose poor results](../reference/troubleshooting.md#the-run-finishes-but-results-look-wrong)
+before comparing model scores.
 
-## 5. Inspect the predictions
+<details markdown="1">
+<summary>Optional: recompute the scores and draw the annotated figure</summary>
+
+This selects the most recent quick-start run in `output/demo/lstm/`.
 
 <!-- example: quickstart-metrics -->
 ```bash
-python - "$run_dir" <<'PY'
+python - <<'PY'
 from pathlib import Path
-import sys
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 from reignflow.utils.stats.metrics import cal_stations_metrics
 
-run = Path(sys.argv[1])
+run = max(Path("output/demo/lstm").glob("regression_LSTM_*"), key=lambda p: p.name)
 pred = np.load(run / "results/pred.npy", allow_pickle=False)
 true = np.load(run / "results/true.npy", allow_pickle=False)
 print("Prediction shape:", pred.shape)
 metrics = cal_stations_metrics(true[:, :, 0], pred[:, :, 0], ["NSE", "RMSE"])
 print({name: float(np.nanmedian(values)) for name, values in metrics.items()})
+
+dates = pd.date_range("2000-05-01", periods=pred.shape[1], freq="D")
+fig, ax = plt.subplots(figsize=(9, 3.5))
+ax.plot(dates, true[0, :, 0], label="Synthetic observed", color="#334155")
+ax.plot(dates, pred[0, :, 0], label="LSTM prediction", color="#c2410c")
+ax.set(xlabel="Test date", ylabel="Runoff (mm/day)",
+       title="Synthetic basin demo_01 — LSTM, 2 epochs")
+ax.legend(frameon=False)
+fig.autofmt_xdate()
+fig.tight_layout()
+figure = run / "results/quickstart_runoff.png"
+fig.savefig(figure, dpi=160)
+plt.close(fig)
+print("Saved figure:", figure)
 PY
 ```
 
-Continue with [real CAMELS training](../tutorials/first-lstm.md),
-[Transformer](../models/transformer.md), or [dHBV](../tutorials/dhbv.md).
-Keep synthetic outputs separate from scientific experiment results.
+</details>
+
+Next, [use real CAMELS data](../tutorials/first-lstm.md),
+[prepare your own data](../data/custom-data.md), or
+[reload and export this model](../guides/evaluate-and-share.md#replay-the-quick-start-run).

@@ -8,7 +8,7 @@ and file output to the existing framework.
 ## Stable model contract
 
 `Model(configs, config_dataset)` is a PyTorch module. Its `forward` accepts
-the [batch dictionary](../models/overview.md#inputs-and-outputs) and returns
+the [batch dictionary](#batch-fields) and returns
 `outputs_time_series` as a finite tensor `[B, T_out, Y]`. The trainer scores
 the final `pred_len` steps, so provide at least that many outputs.
 
@@ -39,6 +39,32 @@ class Model(nn.Module):
         prediction = self.projection(inputs)
         return {"outputs_time_series": prediction}
 ```
+
+## Batch fields
+
+All adapters receive a batch dictionary. `B`, `T`, `P`, `F`, `C`, and `Y` denote
+batch size, input steps, target steps, forcing channels, static channels, and
+target channels.
+
+| Field | Shape | Available in the standard Dataset |
+|---|---|---|
+| `batch_x` | `[B, T, F]` | Normalized forcing |
+| `batch_c` | `[B, C]` | Normalized attributes; zero-width if disabled |
+| `batch_y` | `[B, P, Y]` | Normalized observations |
+| `raw_batch_y` | `[B, P, Y]` | Physical observations |
+| `batch_x_time_stamp` | `[B, T, 3]` | Daily calendar features |
+| `batch_y_time_stamp` | `[B, P, 3]` | Target calendar features |
+| `batch_target_std` | `[B, Y]` or empty | Raw training-period basin standard deviations for `BasinNormalizedMSE` |
+| `physics_batch_x` | `[B, T, 3]` | Raw P/T/PET when the profile defines physical roles |
+
+The Dataset does **not** supply a general `raw_batch_x` field. Full raw arrays
+remain in `Dataset.data_dict_all`; adapters should consume the documented batch
+fields rather than assume raw forcing is always present.
+
+Every model returns `{"outputs_time_series": prediction}`. The trainer scores
+the final `pred_len` output steps. Neural models concatenate repeated static
+attributes with forcing; Transformer also consumes the input calendar features.
+dHBV keeps its normalized parameterization inputs separate from physical forcing.
 
 ## Register behavior explicitly
 

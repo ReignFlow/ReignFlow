@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-09-21T22:29:54.547406+00:00",
+  "publication_status": "documentation_preview; runtime source not included",
+  "runtime_snapshot": {
+    "base_commit": "a4987aa92fb131d3bbbf030c13b063e7fe507148",
+    "has_uncommitted_changes": true,
+    "sha256": "2f510c20a56003e83f02635c2fee759fafbac0ea050230f8d92614749a12ab29",
+    "file_count": 57,
+    "scope": [
+      "reignflow/**/*.py",
+      "reignflow/data/camels/*.txt",
+      "pyproject.toml",
+      "examples/quickstart/create_demo_data.py"
+    ],
+    "fingerprint_method": "Expand scope relative to the runtime checkout, deduplicate and sort relative POSIX paths; SHA-256 each file, then SHA-256 the UTF-8 concatenation of path + NUL + lowercase_file_sha256 + LF for each path."
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "execution_device": "cpu",
+    "packages": {
+      "torch": "2.7.1+cu118",
+      "numpy": "2.5.2",
+      "xarray": "2026.7.0",
+      "netCDF4": "1.7.4",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "pytest": "9.1.1"
+    },
+    "documentation_build_packages": {
+      "mkdocs": "1.6.1",
+      "mkdocs-material": "9.7.6"
+    },
+    "math_library_threads": 1
+  },
+  "checks": {
+    "documented_workflows": {
+      "status": "passed",
+      "tests": 5,
+      "test_file": "tests/test_documented_workflows.py",
+      "workflow_names": [
+        "LSTM and replay",
+        "Transformer",
+        "three-day forecast",
+        "dHBV",
+        "custom data"
+      ],
+      "observations_match_input_netcdf_atol": 1e-06,
+      "replay_arrays_and_metrics_exactly_equal": true,
+      "warnings": [
+        {
+          "category": "RuntimeWarning",
+          "message": "numpy.ndarray size changed, may indicate binary incompatibility. Expected 16 from C header, got 96 from PyObject",
+          "count": 1
+        }
+      ]
+    },
+    "documentation_tests": {
+      "status": "passed",
+      "tests": 15,
+      "test_file": "tests/test_docs.py"
+    },
+    "generated_references": {
+      "status": "passed",
+      "command": "python scripts/docs_reference.py --check"
+    },
+    "strict_site_builds": {
+      "status": "passed",
+      "checkouts": [
+        "development",
+        "documentation preview"
+      ],
+      "command": "python -m mkdocs build --strict",
+      "rendered_optional_content_checked": true
+    }
+  },
+  "quickstart_result": {
+    "data": "synthetic",
+    "epochs": 2,
+    "seed": 42,
+    "test_dates_inclusive": [
+      "2000-05-01",
+      "2000-06-30"
+    ],
+    "shape": [
+      3,
+      61,
+      1
+    ],
+    "metrics_aggregation": "median across three basins",
+    "median_metrics": {
+      "NSE": -0.14502501844667637,
+      "RMSE": 0.7045067150446938
+    },
+    "target_units": "mm/day",
+    "figure": "quickstart_runoff.png",
+    "figure_sha256": "87619076ea9268ef9dafde1f129257d5e44723f389a99436924668b559e1c77a",
+    "predictions_sha256": "e876ffed9a1c3efb96c060060985e3b0a689f251ce51f243422c427a54e83ca9",
+    "observations_sha256": "d1bdf89768deb9469c22041eb5192bd26d923e6c39f50a4e2e8811017659fe2f"
+  },
+  "not_checked_in_this_review": [
+    "GPU",
+    "AMP",
+    "compilation",
+    "full CAMELS benchmarks"
+  ]
+}

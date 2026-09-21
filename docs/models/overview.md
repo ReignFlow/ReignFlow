@@ -1,6 +1,49 @@
 # Choose a model
 
-The following table is generated from `MODEL_REGISTRY` in the current source.
+Start with **LSTM** to check a new dataset. Choose another model to investigate
+a specific scientific question while keeping the data and evaluation protocol
+consistent.
+
+| Model | When to use it | Inputs and requirements |
+|---|---|---|
+| [LSTM](lstm.md) | First rainfall–runoff baseline | Daily meteorological forcing; optional basin attributes; CPU or CUDA |
+| [LSTM_mask](lstm.md#lstm_mask) | Compare a recurrent model with weight DropConnect | Similar data to LSTM; requires CUDA |
+| [Transformer](transformer.md) | Compare attention with recurrent modeling | Daily forcing and optional attributes; calendar features are supplied automatically; CPU or CUDA |
+| [dHBV](dhbv.md) | Learn parameters of a differentiable HBV simulation | Precipitation, temperature, PET, and runoff in the required physical units; CPU or CUDA |
+
+For a first neural run, keep `MaskedMSE`, the tutorial's small model, and a
+constant learning rate. Basin-weighted loss is an optional comparison once
+the baseline works. dHBV instead requires `CAMELS_dHBV`, `CompositeRMSE`, and
+its documented warm-up and routing settings.
+
+## Simulation or forecasting
+
+| Goal | Task | Supported models |
+|---|---|---|
+| Estimate runoff on days covered by the input forcing | `regression` | All four models |
+| Estimate runoff after the input window | `forecast` | LSTM, LSTM_mask, Transformer |
+
+For neural models, use `0 < pred_len <= seq_len`. Regression targets occupy
+the last `pred_len` input days; forecast targets follow those inputs. See the
+[window example](../guides/data-selection.md#periods-and-history).
+Forecasting currently means a supervised experiment with observations for
+evaluation; the [forecast guide](../guides/forecast.md) explains its outputs.
+
+The supplied dHBV test path uses a long physical warm-up and supports
+regression simulation. A parsed forecast flag does not provide a dHBV
+forecasting workflow.
+
+## Inputs and outputs
+
+Neural models learn normalized runoff, which is converted back to physical
+units for reporting. dHBV directly produces physical runoff. Model developers
+can find tensor shapes and adapter requirements in the
+[batch-field reference](../development/model-integration.md#batch-fields).
+
+<details markdown="1">
+<summary>Developer reference: model registry entries</summary>
+
+The following table is generated from the source registry.
 
 <!-- BEGIN GENERATED: models -->
 
@@ -13,56 +56,4 @@ The following table is generated from `MODEL_REGISTRY` in the current source.
 
 <!-- END GENERATED: models -->
 
-## Practical choices
-
-- **LSTM** is the simplest CPU or CUDA baseline. Start here to verify your data.
-- **LSTM_mask** uses a CUDA-only cuDNN cell with weight DropConnect.
-- **Transformer** uses attention and daily calendar features. It supports CPU
-  smoke runs and CUDA training.
-- **dHBV** generates parameters for an HBV simulation and returns physical runoff.
-  Use `CAMELS_dHBV`, `CompositeRMSE`, and the documented warm-up settings.
-
-Use `MaskedMSE` or `BasinNormalizedMSE` for the neural models. The absence of a
-registry-enforced loss is not evidence that every CLI loss is a useful pairing:
-the standard neural path passes basin statistics to its loss, while dHBV uses
-raw physical targets.
-
-## Inputs and outputs
-
-All adapters receive a batch dictionary. `B`, `T`, `P`, `F`, `C`, and `Y` denote
-batch size, input steps, target steps, forcing channels, static channels, and
-target channels.
-
-| Field | Shape | Available in the standard Dataset |
-|---|---|---|
-| `batch_x` | `[B, T, F]` | Normalized forcing |
-| `batch_c` | `[B, C]` | Normalized attributes; zero-width if disabled |
-| `batch_y` | `[B, P, Y]` | Normalized observations |
-| `raw_batch_y` | `[B, P, Y]` | Physical observations |
-| `batch_x_time_stamp` | `[B, T, 3]` | Daily calendar features |
-| `batch_y_time_stamp` | `[B, P, 3]` | Target calendar features |
-| `batch_target_std` | `[B, Y]` or empty | Raw training-period basin standard deviations for `BasinNormalizedMSE` |
-| `physics_batch_x` | `[B, T, 3]` | Raw P/T/PET when the profile defines physical roles |
-
-The Dataset does **not** supply a general `raw_batch_x` field. Full raw arrays
-remain in `Dataset.data_dict_all`; adapters should consume the documented batch
-fields rather than assume raw forcing is always present.
-
-Every model returns `{"outputs_time_series": prediction}`. The trainer scores
-the final `pred_len` output steps. Neural models concatenate repeated static
-attributes with forcing; Transformer also consumes the input calendar features.
-dHBV keeps its normalized parameterization inputs separate from physical forcing.
-
-## Tasks
-
-For `regression`, targets occupy the final part of the input window. For
-`forecast`, targets follow the input window. Use `0 < pred_len <= seq_len` for
-the current neural adapters: they return one output per input step and the
-trainer takes the final `pred_len` outputs.
-
-The dHBV long-warm-up test is a regression simulation. The general CLI may parse
-`forecast` with dHBV, but it does not provide a supported physical forecast
-workflow. Use [neural forecasting](../guides/forecast.md) for that task.
-
-Read the model-specific pages for [LSTM](lstm.md),
-[Transformer](transformer.md), and [dHBV](dhbv.md).
+</details>

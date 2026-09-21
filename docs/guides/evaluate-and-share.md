@@ -1,8 +1,68 @@
 # Evaluate and share models
 
-The [quick start](../getting-started/quickstart.md) provides complete executable
-checkpoint and bundle replay commands. This page explains which settings and
-files must accompany them.
+Use this page after [training your first model](../getting-started/quickstart.md).
+A checkpoint stores saved model state. An inference bundle packages selected
+weights and metadata for evaluation with matching data.
+
+**Current scope:** checkpoint and bundle evaluation require matching periods,
+stations, variables, and observations. General prediction on new, unobserved
+data is not provided by this interface.
+
+## Replay the quick-start run
+
+These commands reuse the trained LSTM from the quick start. Run them in one
+Bash session from the same source checkout. The array below is simply a way
+to reuse the same settings for the two evaluation commands.
+
+### Keep the original settings
+
+<!-- example: quickstart-replay-setup -->
+```bash
+demo_args=(
+  --task_name regression --model LSTM --data CAMELS
+  --input_nc_file output/demo/CAMELS.nc --all_stations
+  --time_series_variables daymet_prcp,daymet_tmean,daymet_pet
+  --static_variables area_gages2,elev_mean
+  --train_date_list 2000-01-01,2000-03-31
+  --val_date_list 2000-04-01,2000-04-30
+  --test_date_list 2000-05-01,2000-06-30
+  --seq_len 14 --pred_len 1 --d_model 16 --dropout 0
+  --batch_size 32 --epochs 2 --learning_rate 0.001
+  --do_eval --device cpu --seed 42
+)
+run_dir="$(python -c 'from pathlib import Path; print(max(Path("output/demo/lstm").glob("regression_LSTM_*"), key=lambda p: p.name))')"
+```
+
+Keep `--do_eval`: training used validation to select weights, so evaluation
+must load the same validation data for its compatibility check.
+
+### Evaluate the saved checkpoint
+
+<!-- example: quickstart-replay -->
+```bash
+python -m reignflow "${demo_args[@]}" --do_test \
+  --resume_from_checkpoint "$run_dir" --checkpoint_selector best \
+  --export_inference_bundle --output_dir output/demo/replay --des replay
+
+bundle_run="$(python -c 'from pathlib import Path; print(max(Path("output/demo/replay").glob("regression_LSTM_*"), key=lambda p: p.name))')"
+```
+
+This evaluates `best.pt` and exports the evaluated weights into the new
+evaluation run's `inference_bundle/` directory. It does not retrain the model.
+Load `.pt` files only from a trusted source.
+
+### Evaluate the exported bundle
+
+<!-- example: quickstart-bundle -->
+```bash
+python -m reignflow "${demo_args[@]}" --do_test \
+  --inference_bundle "$bundle_run/inference_bundle" \
+  --output_dir output/demo/bundle-replay --des bundle-replay
+```
+
+Predictions, observations, and metrics should match the original selected
+model under the same environment. The documented workflow test checks their
+array and metric equality. Bundles use safetensors and numeric/JSON sidecars.
 
 ## Evaluate a checkpoint
 

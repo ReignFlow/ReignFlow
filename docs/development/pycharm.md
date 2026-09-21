@@ -19,9 +19,9 @@ interpreter's bare `reignflow` console script may belong to another installation
 ## Use the synthetic example
 
 Create the [quick-start data](../getting-started/quickstart.md#1-create-the-demonstration-data),
-then copy the quick-start argument values into the configuration. PyCharm's
-parameters field does not expand Bash arrays: expand `demo_args` into its
-individual options and keep `--device cpu` for the initial session.
+then copy the arguments after `python -m reignflow` from the quick-start
+training command into the parameters field. Remove Bash line-continuation
+backslashes and keep `--device cpu` for the initial session.
 
 ## Breakpoints in data-flow order
 

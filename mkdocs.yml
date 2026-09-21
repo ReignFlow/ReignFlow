@@ -90,6 +90,7 @@ nav:
       - Run Outputs: reference/outputs.md
       - Checkpoints and Provenance: guides/checkpoints.md
       - Metrics: reference/metrics.md
+      - Validation Record: reference/validation.md
       - Benchmarks: reference/benchmarks.md
       - Troubleshooting: reference/troubleshooting.md
   - Development:

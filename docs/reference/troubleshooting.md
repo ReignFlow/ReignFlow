@@ -3,6 +3,21 @@
 Match the failure to the stage below. Exact paths, hashes, and array sizes vary;
 the quoted phrases identify errors in the current code.
 
+## The run finishes but results look wrong
+
+| Observation | First checks |
+|---|---|
+| Low or negative NSE | Confirm test dates and units; inspect a basin's curve and training/validation history. Two synthetic training epochs only check the workflow |
+| Peaks appear shifted | Check daily timestamps and whether the task is `regression` or `forecast`; inspect raw forecast windows for lead-specific analysis |
+| Magnitudes are systematically wrong | Check discharge versus runoff depth, basin-area conversion, variable names, and the saved normalization contract |
+| Training improves while validation worsens | Check split separation and overfitting; select with validation and reserve test data for the final comparison |
+| A good example plot disagrees with the summary | The automatic plot shows the first basin; the summary is a median across basins. Inspect per-basin metrics and how many are finite |
+
+The [quick-start result](../getting-started/quickstart.md#3-inspect-the-predictions)
+explains NSE/RMSE, and [saved outputs](outputs.md) identify the arrays behind
+the report. These checks diagnose possible causes; they do not guarantee a
+particular score.
+
 ## Data loading
 
 | Symptom | Check and remedy |

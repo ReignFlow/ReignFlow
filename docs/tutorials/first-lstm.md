@@ -56,7 +56,7 @@ For standalone evaluation, repeat the same data/model arguments and add:
 
 Retain the effective validation state: use `--save_best` as above or `--do_eval`.
 For the exported bundle, use `--do_test --inference_bundle path/to/run/inference_bundle`
-instead of the checkpoint flags. The [quick-start replay](../getting-started/quickstart.md#3-evaluate-the-saved-checkpoint)
+instead of the checkpoint flags. The [quick-start replay](../guides/evaluate-and-share.md#replay-the-quick-start-run)
 contains a complete executable example without placeholder arguments.
 
 ## Scale the experiment

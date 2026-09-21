@@ -7,65 +7,51 @@
     and trained weights are not included. The training and evaluation commands
     describe the full ReignFlow source checkout.
 
-ReignFlow trains and evaluates rainfall–runoff models from daily NetCDF data.
-LSTM, LSTM_mask, Transformer, and differentiable HBV share a command-line
-interface, data preparation, checkpoint handling, and basin-wise metrics.
+ReignFlow trains and evaluates daily rainfall–runoff models from NetCDF data.
+Use LSTM as a starting point, compare attention with Transformer, or learn
+parameters for a differentiable HBV simulation.
 
-ReignFlow builds on [hydroDL](https://github.com/mhpi/hydroDL), its
-[dPL-HBV implementation](https://github.com/mhpi/dPLHBVrelease), and selected
-[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) metrics,
-along with other upstream contributions. The
-[acknowledgements](acknowledgements.md) identify each component's source and
-ReignFlow's modifications.
+## Choose your starting point
+
+| Your goal | Start here | What you will get |
+|---|---|---|
+| Run a model for the first time | [Installation](getting-started/installation.md) → [Quick start](getting-started/quickstart.md) | A small CPU run and an explained prediction plot |
+| Use real observations or your own basins | [CAMELS tutorial](tutorials/first-lstm.md) or [custom data](data/custom-data.md) | A complete data-to-results workflow |
+| Compare models or extend the framework | [Experiment workflow](guides/training.md) → [validation record](reference/validation.md) | Supported scenarios, comparison requirements, and the scope of checked results |
 
 ## Start with a complete run
 
-1. [Install ReignFlow](getting-started/installation.md).
-2. [Run the quick start](getting-started/quickstart.md): create a small synthetic
-   dataset, train on CPU, evaluate a checkpoint, and reload an inference bundle.
-3. [Prepare CAMELS](data/camels.md) or [supply your own daily data](data/custom-data.md).
-4. Follow the [LSTM tutorial](tutorials/first-lstm.md) or [dHBV tutorial](tutorials/dhbv.md).
-
-The synthetic example checks the workflow. Scientific comparisons use real
-observations, fixed selections, and the versioned [benchmark records](reference/benchmarks.md).
+The [quick start](getting-started/quickstart.md) has three steps: create
+synthetic data, train an LSTM, and inspect predictions. You can read the
+example plot now; running the commands requires the full source checkout.
+After that, move to real data or [reload and share a model](guides/evaluate-and-share.md).
 
 ## Choose a model
 
-| Model | What it learns | Device |
+| Model | Main use | Device |
 |---|---|---|
-| [LSTM](models/lstm.md) | Runoff from a recurrent forcing and attribute encoder | CPU or CUDA |
-| [LSTM_mask](models/lstm.md#lstm_mask) | Runoff with weight DropConnect in a cuDNN LSTM | CUDA |
-| [Transformer](models/transformer.md) | Runoff from attention over forcing, attributes, and calendar features | CPU or CUDA |
-| [dHBV](models/dhbv.md) | Basin parameters for a differentiable HBV simulation | CPU or CUDA |
+| [LSTM](models/lstm.md) | First rainfall–runoff baseline | CPU or CUDA |
+| [LSTM_mask](models/lstm.md#lstm_mask) | Recurrent model with weight DropConnect | CUDA |
+| [Transformer](models/transformer.md) | Attention over forcing, attributes, and calendar features | CPU or CUDA |
+| [dHBV](models/dhbv.md) | Neural parameter learning with a physical HBV simulation | CPU or CUDA |
 
-[Model selection](models/overview.md) explains the output spaces, loss choices,
-and supported workflows. Use daily data throughout; the current trainer has
-daily history and calendar assumptions.
+[Model selection](models/overview.md) explains the input requirements and
+supported tasks. [Experiment scenarios](guides/training.md#choose-your-workflow)
+clarify forecasting, resuming, and the current limits of model reuse.
 
-## Run an experiment
+## Results and reproducibility
 
-- [Select stations](guides/station-selection.md) and [configure variables and periods](guides/data-selection.md).
-- [Configure training](guides/training-control.md), then [select weights with validation](guides/validation-and-model-selection.md).
-- [Run GPU jobs on a cluster](guides/hpc.md).
-- [Resume an interrupted run or transfer weights](guides/resume-and-warm-start.md).
-- [Evaluate and export a model](guides/evaluate-and-share.md).
-- [Run a forecast task](guides/forecast.md) or [inspect HBV parameters](guides/hbv-parameters.md).
+Use [run outputs](reference/outputs.md) to find saved arrays and plots, and
+[troubleshooting](reference/troubleshooting.md#the-run-finishes-but-results-look-wrong)
+when a completed run looks wrong. The [validation record](reference/validation.md)
+identifies the checked source snapshot, environment, and executable examples.
+[Historical benchmarks](reference/benchmarks.md) retain their original numerical
+conventions and require separate reproduction before use as current scores.
 
-The [workflow overview](guides/training.md) connects these steps. The
-[CLI reference](reference/cli.md) lists the executable parser's defaults;
-[outputs](reference/outputs.md), [metrics](reference/metrics.md), and
-[troubleshooting](reference/troubleshooting.md) explain what a run produces.
+## Acknowledgements
 
-## Documentation and reproducibility
-
-These pages describe the development version reviewed before this preview was
-exported. CLI, model, and profile tables were generated from code, and tutorial
-commands were checked in the full source checkout. The preview build checks the
-documentation site; it does not run the model tests.
-[Validation coverage](development/documentation.md#validation-coverage)
-distinguishes these checks from GPU testing and full benchmark reproduction.
-
-The inverse normalization now uses `z * (std + 1e-5) + mean`. Historical
-benchmark scores predate this correction unless their record states otherwise.
-Checkpoints and inference bundles with the previous normalization contract
-require an explicit migration decision; see [checkpoints](guides/checkpoints.md#normalization-compatibility).
+ReignFlow builds on [hydroDL](https://github.com/mhpi/hydroDL), its
+[dPL-HBV implementation](https://github.com/mhpi/dPLHBVrelease), selected
+[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) metrics,
+and other upstream work. See [acknowledgements and code provenance](acknowledgements.md)
+for component sources, modifications, and scientific references.

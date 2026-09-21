@@ -23,32 +23,65 @@ the Dataset requests daily calendar features. Hourly or irregular data require
 code changes and validation, not just a renamed variable or a `freq` value.
 The reader does not diagnose every possible irregular time axis up front.
 
-## Override the inherited defaults
+## A minimal file and complete run
 
-For example, a file with `rain`, `temperature`, `flow`, and no static attributes
-needs these **argument fragments** added to a complete training command:
+Use this synthetic schema example to check the interface, then replace the
+arrays with your own daily measurements. The artificial flow equation is
+only a formatting fixture.
 
-```text
---data CAMELS
---input_nc_file path/to/daily.nc
---all_stations
---time_series_variables rain,temperature
---target_variables flow
---static_variables None
---train_date_list 2000-01-01,2004-12-31
---val_date_list 2005-01-01,2005-12-31
---test_date_list 2006-01-01,2006-12-31
+<!-- example: custom-data -->
+```bash
+python - <<'PY'
+from pathlib import Path
+import numpy as np
+import pandas as pd
+import xarray as xr
+
+dates = pd.date_range("1999-12-01", "2000-06-30", freq="D")
+rng = np.random.default_rng(42)
+rain = rng.gamma(2.0, 1.0, size=(2, len(dates)))
+temperature = 10.0 + rng.normal(size=rain.shape)
+flow = 0.35 * rain + 0.03 * temperature
+dims = ("station_ids", "time")
+ds = xr.Dataset(
+    {"rain": (dims, rain, {"units": "mm day-1"}),
+     "temperature": (dims, temperature, {"units": "degC"}),
+     "flow": (dims, flow, {"units": "mm day-1"})},
+    coords={"station_ids": ["001", "002"], "time": dates},
+)
+Path("output/custom").mkdir(parents=True, exist_ok=True)
+ds.to_netcdf("output/custom/daily.nc")
+print(dict(ds.sizes))
+ds.close()
+PY
 ```
 
-Without the overrides, the profile still requests its built-in basin IDs,
-forcing names, attributes, and dates. `--station_file` can replace
-`--all_stations` for a fixed subset.
+The file has two stations and 213 daily timestamps. December supplies history
+for the first training windows. There are no static attributes in this example.
 
-The full source checkout includes `examples/quickstart/create_demo_data.py`,
-a small working schema example described in the
-[quick start](../getting-started/quickstart.md). That script will accompany the
-code release. Its runoff equation is an artificial fixture, not a hydrological
-dataset preparation method.
+<!-- example: custom-train -->
+```bash
+python -m reignflow --task_name regression --model LSTM --data CAMELS \
+  --input_nc_file output/custom/daily.nc --all_stations \
+  --time_series_variables rain,temperature --target_variables flow \
+  --static_variables None \
+  --train_date_list 2000-01-01,2000-03-31 \
+  --val_date_list 2000-04-01,2000-04-30 \
+  --test_date_list 2000-05-01,2000-06-30 \
+  --seq_len 14 --pred_len 1 --d_model 16 --dropout 0 \
+  --batch_size 32 --epochs 2 --learning_rate 0.001 \
+  --save_best --device cpu --seed 42 --output_dir output/custom/lstm
+```
+
+Expect physical prediction/observation arrays of `[2, 61, 1]` and
+`results/feature_flow.png` in the printed run directory. Use the
+[quick-start interpretation](../getting-started/quickstart.md#3-inspect-the-predictions)
+to read the result.
+
+`CAMELS` supplies a profile here; the explicit options replace its station
+list, variables, attributes, and dates. With real data, change all of these
+to match your file. Use `--station_file` instead of `--all_stations` for a
+fixed subset. Keep ID strings, including leading zeros, unchanged.
 
 ## Units and missing observations
 

@@ -23,9 +23,7 @@ and activate it with `source .venv/bin/activate`.
 
 ## Install from a full source checkout
 
-Use the dedicated environment created above. If an existing environment serves
-several ReignFlow checkouts, do not install ReignFlow into it; use its installed
-dependencies and run `python -m reignflow` from the desired checkout instead.
+Use the dedicated environment created above:
 
 ```bash
 python -m pip install -e .
@@ -50,10 +48,15 @@ The package path should identify this checkout. LSTM, Transformer, and dHBV
 support CPU execution; LSTM_mask requires CUDA. On a cluster, check CUDA from
 inside a [GPU allocation](../guides/hpc.md).
 
+<details markdown="1">
+<summary>Several ReignFlow checkouts share an environment</summary>
+
 When several projects share the same interpreter and package name, run
 `python -m reignflow` from this checkout with the dependencies already installed.
 Avoid installing several editable ReignFlow projects into the same environment:
 the console command and imports can otherwise resolve to another checkout.
+
+</details>
 
 ## Development dependencies
 
