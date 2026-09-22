@@ -45,7 +45,6 @@ push: a branch in a public repository is already visible before it is merged.
 
 ## Acknowledgements
 
-ReignFlow is an independently designed rainfall–runoff modeling framework.
 We thank [hydroDL](https://github.com/mhpi/hydroDL) and
 [NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) for ideas
 and insights that informed parts of this work.

@@ -1,12 +1,11 @@
 # Acknowledgements and code provenance
 
-ReignFlow's framework architecture and overall workflow are independently
-designed. We thank the [hydroDL](https://github.com/mhpi/hydroDL) and
+We thank the [hydroDL](https://github.com/mhpi/hydroDL) and
 [NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) communities
 for ideas and insights that informed parts of this work.
 
 The attributions below identify specific components and numerical routines
-used or adapted within ReignFlow's own framework. We also thank the dPL-HBV,
+used or adapted in ReignFlow. We also thank the dPL-HBV,
 multiple_forcing, and PyETo authors for making these components available.
 
 The [public release repository](https://github.com/ReignFlow/ReignFlow)
