@@ -17,13 +17,13 @@ predate the dPL-to-dHBV identifier change.
 **Cross-row comparability has not been established.** The rows use different
 forcing inputs and basin sets, including 531 versus 671 basins. Before ranking
 models, match stations, dates, forcings, loss, weight selection, normalization,
-and seed protocol. The table is an inventory of recorded experiments.
+and seed protocol. The table lists recorded experiments for the models
+covered by this guide.
 
 | Model/recipe | Basins | Median NSE | Record |
 |---|---:|---:|---|
 | LSTM, 18 forcings, milestone schedule | 531 | 0.8014 | Independently verified on its archived stack |
 | LSTM, Daymet | 531 | 0.7359 | Recorded |
-| LSTM_mask, Daymet | 531 | 0.7485 | Recorded |
 | LSTM, 18 forcings, cosine schedule | 531 | 0.7966 | Recorded |
 | dHBV, Daymet P/T/PET | 671 | 0.7162 | Historical physical-output baseline |
 | Transformer, 18 forcings | 531 | 0.7659 | Recorded single run; separate three-seed mean 0.7712 |

@@ -31,7 +31,6 @@ After that, move to real data or [reload and share a model](guides/evaluate-and-
 | Model | Main use | Device |
 |---|---|---|
 | [LSTM](models/lstm.md) | First rainfall–runoff baseline | CPU or CUDA |
-| [LSTM_mask](models/lstm.md#lstm_mask) | Recurrent model with weight DropConnect | CUDA |
 | [Transformer](models/transformer.md) | Attention over forcing, attributes, and calendar features | CPU or CUDA |
 | [dHBV](models/dhbv.md) | Neural parameter learning with a physical HBV simulation | CPU or CUDA |
 
@@ -50,8 +49,9 @@ conventions and require separate reproduction before use as current scores.
 
 ## Acknowledgements
 
-ReignFlow builds on [hydroDL](https://github.com/mhpi/hydroDL), its
-[dPL-HBV implementation](https://github.com/mhpi/dPLHBVrelease), selected
-[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) metrics,
-and other upstream work. See [acknowledgements and code provenance](acknowledgements.md)
-for component sources, modifications, and scientific references.
+ReignFlow is an independently designed rainfall–runoff modeling framework.
+We thank [hydroDL](https://github.com/mhpi/hydroDL) and
+[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) for ideas
+and insights that informed parts of this work.
+See [acknowledgements](acknowledgements.md) for related projects and
+scientific references.

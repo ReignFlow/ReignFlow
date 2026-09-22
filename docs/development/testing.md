@@ -39,26 +39,19 @@ build additionally checks navigation, document targets, and section anchors.
 ## Real-data gate
 
 The existing gate uses `tests/fixtures/camels_20_stations.txt` and a local
-CAMELS file. The CPU suite runs LSTM and dHBV; the GPU suite runs LSTM_mask.
-It does not yet include Transformer. Run it when a runtime change affects
-data, training, normalization, checkpointing, or metrics.
+CAMELS file. The documented CPU suite runs LSTM and dHBV.
+This CPU check does not cover Transformer or validate CUDA execution. Run it
+when a runtime change affects data, training, normalization, checkpointing, or metrics.
 
 ```bash
 export REIGNFLOW_CAMELS_NC="path/to/CAMELS.nc"
 python scripts/run_real_camels_gate.py --suite cpu --require-real-data
 ```
 
-Inside a GPU allocation:
-
-```bash
-export REIGNFLOW_GATE_GPU=cuda:0
-python scripts/run_real_camels_gate.py --suite gpu --require-real-data
-```
-
-`--suite all` requests both. `--require-real-data` makes unavailable required
-data/devices an error. Without it, missing prerequisites can produce a skipped
-or partial report. The default output is `output/real_camels_gate/`; override
-it with the gate's `--output-dir` option.
+`--require-real-data` makes unavailable required data an error. Without it,
+missing prerequisites can produce a skipped or partial report. The default
+output is `output/real_camels_gate/`; override it with the gate's
+`--output-dir` option.
 
 The gate checks station order, update counts, shapes, finite outputs, metrics,
 and expected hashes/tolerances, including HBV exports. Read the JSON report

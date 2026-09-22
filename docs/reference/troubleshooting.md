@@ -115,7 +115,7 @@ currently a general transfer or observation-free inference format.
 
 ## Device and training
 
-`LSTM_mask` requires CUDA. Other documented models support small CPU runs.
+The documented models support small CPU runs.
 Explicit CUDA IDs are local to the process's visible devices; get a scheduler
 allocation first. ReignFlow does not reset `CUDA_VISIBLE_DEVICES`.
 

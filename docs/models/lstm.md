@@ -1,6 +1,4 @@
-# LSTM models
-
-## LSTM
+# LSTM
 
 An LSTM carries hidden and cell states through the input window, allowing
 earlier rainfall and catchment conditions to influence today's runoff estimate.
@@ -24,22 +22,9 @@ scope and the related loss implementations.
 The plain LSTM runs on CPU or CUDA. Begin with the [quick start](../getting-started/quickstart.md)
 and use the [CAMELS tutorial](../tutorials/first-lstm.md) for observations.
 
-## LSTM_mask
-
-`--model LSTM_mask` wraps a cuDNN LSTM adapted from
-[hydroDL](https://github.com/mhpi/hydroDL), including its weight DropConnect code.
-`--dropout` controls DropConnect on input and recurrent weight matrices during
-training, rather than the plain LSTM's output dropout. The adapter calls
-`torch._cudnn_rnn` and requires CUDA. Its CPU failure explicitly says
-`requires a CUDA GPU`.
-
-Start from an LSTM data configuration, choose `--model LSTM_mask`, and run
-inside a GPU allocation with `--device cuda:0`. Treat the model change as a
-new experiment; plain-LSTM weights are not interchangeable with these weights.
-
 ## Losses and units
 
-Both neural models predict normalized targets. `MaskedMSE` averages squared
+LSTM predicts normalized targets. `MaskedMSE` averages squared
 errors over non-NaN observations. `BasinNormalizedMSE` additionally weights each
 error using the basin's standard deviation from the **raw loaded training
 targets**:

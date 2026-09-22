@@ -70,7 +70,7 @@ nav:
       - Variables and Periods: guides/data-selection.md
   - Models:
       - Choose a Model: models/overview.md
-      - LSTM Models: models/lstm.md
+      - LSTM: models/lstm.md
       - Transformer: models/transformer.md
       - Differentiable HBV: models/dhbv.md
   - Experiments:

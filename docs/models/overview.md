@@ -7,7 +7,6 @@ consistent.
 | Model | When to use it | Inputs and requirements |
 |---|---|---|
 | [LSTM](lstm.md) | First rainfall–runoff baseline | Daily meteorological forcing; optional basin attributes; CPU or CUDA |
-| [LSTM_mask](lstm.md#lstm_mask) | Compare a recurrent model with weight DropConnect | Similar data to LSTM; requires CUDA |
 | [Transformer](transformer.md) | Compare attention with recurrent modeling | Daily forcing and optional attributes; calendar features are supplied automatically; CPU or CUDA |
 | [dHBV](dhbv.md) | Learn parameters of a differentiable HBV simulation | Precipitation, temperature, PET, and runoff in the required physical units; CPU or CUDA |
 
@@ -20,8 +19,8 @@ its documented warm-up and routing settings.
 
 | Goal | Task | Supported models |
 |---|---|---|
-| Estimate runoff on days covered by the input forcing | `regression` | All four models |
-| Estimate runoff after the input window | `forecast` | LSTM, LSTM_mask, Transformer |
+| Estimate runoff on days covered by the input forcing | `regression` | LSTM, Transformer, dHBV |
+| Estimate runoff after the input window | `forecast` | LSTM, Transformer |
 
 For neural models, use `0 < pred_len <= seq_len`. Regression targets occupy
 the last `pred_len` input days; forecast targets follow those inputs. See the
@@ -43,14 +42,14 @@ can find tensor shapes and adapter requirements in the
 <details markdown="1">
 <summary>Developer reference: model registry entries</summary>
 
-The following table is generated from the source registry.
+The following table is generated from the source registry for the models
+covered by this guide.
 
 <!-- BEGIN GENERATED: models -->
 
 | Model | Prediction space | Test path | Required loss |
 |---|---|---|---|
 | `LSTM` | `normalized` | `window` | No registry-enforced loss |
-| `LSTM_mask` | `normalized` | `window` | No registry-enforced loss |
 | `Transformer` | `normalized` | `window` | No registry-enforced loss |
 | `dHBV` | `physical` | `dhbv_long_warmup` | `CompositeRMSE` |
 

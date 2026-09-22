@@ -27,6 +27,9 @@ and the runtime tests are not included here. When changing a default or a
 training command, verify it in the development checkout and update the preview
 from that verified result. Do not invent new defaults by editing generated tables.
 
+The generator limits model names and registry rows to the documented model
+list: LSTM, Transformer, and dHBV. Runtime registration remains separate.
+
 ## Validation coverage
 
 The [validation record](../reference/validation.md) identifies the source
@@ -40,7 +43,7 @@ belong to that checkout, not to this documentation-only repository.
 | Documentation topic | Code cross-check | Executable evidence |
 |---|---|---|
 | CLI defaults and choices | `config/config_basic.py` | Generated-table check, help/options tests |
-| Available models and output spaces | `models/registry.py` | Generated registry table, model tests |
+| Documented models and output spaces | `models/registry.py` | Generated registry table, model tests |
 | Profile variables, stations, dates | `config/config_dataset_*.py` | Generated profile tables |
 | Daily schema, split history, normalization | `data/nc_reader.py`, `data/dataset.py` | Normalization/data tests; physical observation comparison in tutorial runs |
 | LSTM train → checkpoint → bundle | `training/neural_trainer.py`, `utils/inference_bundle.py` | Exact Markdown commands and replay array/metric equality |

@@ -8,7 +8,8 @@ root. The examples also assume that root for their relative data and output path
 
 The tables below are generated from the real argument parser. They distinguish
 **parser defaults** from values later supplied by a dataset profile or resolved
-by a model. Run `python scripts/docs_reference.py --check` to detect drift.
+by a model. Model names are limited to those covered by this guide.
+Run `python scripts/docs_reference.py --check` to detect drift.
 
 ## Before choosing options
 
@@ -41,7 +42,7 @@ by a model. Run `python scripts/docs_reference.py --check` to detect drift.
 |---|---|---|
 | `--help` | `unset` | show this help message and exit |
 | `--task_name` | `required` | task name, options: [regression, forecast] |
-| `--model` | `required` | model name, options: [LSTM, LSTM_mask, Transformer, dHBV] |
+| `--model` | `required` | Models covered by this guide: LSTM, Transformer, dHBV. |
 | `--output_dir` | `./output/` | output directory |
 | `--des` | `` | exp description |
 | `--resume_from_checkpoint` | `unset` | trusted training-state checkpoint used for exact resume, or trusted weights for testing |

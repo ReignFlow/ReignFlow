@@ -12,7 +12,7 @@ forecast: [---- observed input forcing ----][--- future targets ---]
                      seq_len                        pred_len
 ```
 
-Use LSTM, LSTM_mask (CUDA), or Transformer with `0 < pred_len <= seq_len`.
+Use LSTM or Transformer with `0 < pred_len <= seq_len`.
 The current adapters return one output per input position; the trainer maps
 the final `pred_len` outputs to future targets. There is no autoregressive
 decoder, future-weather input, or observed-runoff input unless you explicitly

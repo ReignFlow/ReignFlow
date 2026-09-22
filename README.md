@@ -45,12 +45,12 @@ push: a branch in a public repository is already visible before it is merged.
 
 ## Acknowledgements
 
-ReignFlow builds on [hydroDL](https://github.com/mhpi/hydroDL),
-[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology), and other
-upstream projects. Its dHBV implementation is modified from the hydroDL-based
-[dPL-HBV release](https://github.com/mhpi/dPLHBVrelease).
-See [acknowledgements and code provenance](docs/acknowledgements.md) for the
-component sources, ReignFlow's modifications, and scientific references.
+ReignFlow is an independently designed rainfall–runoff modeling framework.
+We thank [hydroDL](https://github.com/mhpi/hydroDL) and
+[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) for ideas
+and insights that informed parts of this work.
+See [acknowledgements](docs/acknowledgements.md) for related projects and
+scientific references.
 
 ## License
 

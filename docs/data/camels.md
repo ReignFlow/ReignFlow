@@ -75,7 +75,7 @@ file relative to the source checkout:
 Use `--input_nc_file path/to/CAMELS.nc` for a different location.
 
 The following counts, variables, and dates are generated from the actual
-profile factories. CAMELS is suitable for LSTM, LSTM_mask, and Transformer;
+profile factories. CAMELS is suitable for LSTM and Transformer;
 CAMELS_dHBV supplies the physical roles needed by dHBV.
 
 <!-- BEGIN GENERATED: profiles -->

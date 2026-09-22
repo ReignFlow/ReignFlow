@@ -1,18 +1,23 @@
 # Acknowledgements and code provenance
 
-ReignFlow builds on the work of the hydroDL, dPL-HBV, NeuralHydrology,
-multiple_forcing, and PyETo authors and contributors. We thank these projects
-for making their research and implementations available.
+ReignFlow's framework architecture and overall workflow are independently
+designed. We thank the [hydroDL](https://github.com/mhpi/hydroDL) and
+[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) communities
+for ideas and insights that informed parts of this work.
+
+The attributions below identify specific components and numerical routines
+used or adapted within ReignFlow's own framework. We also thank the dPL-HBV,
+multiple_forcing, and PyETo authors for making these components available.
 
 The [public release repository](https://github.com/ReignFlow/ReignFlow)
 currently contains documentation only. The implementation paths below refer
 to the full ReignFlow source checkout described by this documentation.
 
-## Upstream contributions
+## Sources of specific components
 
 | Project | Contribution used by ReignFlow | Local implementation |
 |---|---|---|
-| [hydroDL](https://github.com/mhpi/hydroDL) | Adapted cuDNN LSTM with weight DropConnect, related loss code, and selected metric conventions | `reignflow/models/neural/LSTM_mask.py`, `reignflow/models/neural/dropout.py`, `reignflow/utils/losses/composite_rmse.py`, and selected formulas in `reignflow/utils/stats/metrics.py` |
+| [hydroDL](https://github.com/mhpi/hydroDL) | CompositeRMSE loss formulation and selected metric conventions | `reignflow/utils/losses/composite_rmse.py` and selected formulas in `reignflow/utils/stats/metrics.py` |
 | [dPL-HBV release](https://github.com/mhpi/dPLHBVrelease) | Direct source for the hydroDL-based differentiable HBV implementation, including HBV simulation and gamma routing | `reignflow/models/physics/hbv.py` and `reignflow/models/hybrid/dhbv.py` |
 | [NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) | Selected FLV and FMS calculations, adapted to ReignFlow's NumPy array API | `reignflow/utils/stats/metrics.py` |
 | [multiple_forcing](https://github.com/kratzert/multiple_forcing) | Adapted plain LSTM, MSE, and basin-normalized MSE implementations | `reignflow/models/neural/LSTM.py`, `reignflow/utils/losses/MSE.py`, and `reignflow/utils/losses/BasinNormalizedMSE.py` |

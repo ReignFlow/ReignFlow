@@ -45,7 +45,7 @@ python -c "import reignflow, torch; print(reignflow.__file__); print(torch.__ver
 ```
 
 The package path should identify this checkout. LSTM, Transformer, and dHBV
-support CPU execution; LSTM_mask requires CUDA. On a cluster, check CUDA from
+support CPU execution. On a cluster, check CUDA from
 inside a [GPU allocation](../guides/hpc.md).
 
 <details markdown="1">
