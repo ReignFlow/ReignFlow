@@ -1,56 +1,57 @@
+---
+hide:
+  - toc
+---
+
 # ReignFlow
 
-!!! info "Documentation preview"
+ReignFlow trains and evaluates daily rainfall–runoff models from NetCDF data,
+with a shared workflow for data preparation, training, and evaluation.
 
-    This site is available for review before the public code release. Its
-    repository contains documentation only. Model code, helper scripts, datasets,
-    and trained weights are not included. The training and evaluation commands
-    describe the full ReignFlow source checkout.
+This documentation preview describes the full source checkout; the public
+repository currently contains documentation only.
 
-ReignFlow trains and evaluates daily rainfall–runoff models from NetCDF data.
-Use LSTM as a starting point, compare attention with Transformer, or learn
-parameters for a differentiable HBV simulation.
+<div class="rf-routes" markdown="1">
 
-## Choose your starting point
+<div class="rf-route" markdown="1">
 
-| Your goal | Start here | What you will get |
-|---|---|---|
-| Run a model for the first time | [Installation](getting-started/installation.md) → [Quick start](getting-started/quickstart.md) | A small CPU run with saved predictions and output checks |
-| Use real observations or your own basins | [CAMELS tutorial](tutorials/first-lstm.md) or [custom data](data/custom-data.md) | A complete data-to-results workflow |
-| Compare models or extend the framework | [Experiment workflow](guides/training.md) → [validation record](reference/validation.md) | Supported scenarios, comparison requirements, and the scope of checked results |
+## [Getting Started](getting-started/installation.md)
 
-## Start with a complete run
+Set up the environment and complete your first small CPU run.
 
-The [quick start](getting-started/quickstart.md) has three steps: create
-synthetic data, train an LSTM, and inspect predictions. Running the commands
-requires the full source checkout.
-After that, move to real data or [reload and share a model](guides/evaluate-and-share.md).
+</div>
 
-## Choose a model
+<div class="rf-route" markdown="1">
 
-| Model | Main use | Device |
-|---|---|---|
-| [LSTM](models/lstm.md) | First rainfall–runoff baseline | CPU or CUDA |
-| [Transformer](models/transformer.md) | Attention over forcing, attributes, and calendar features | CPU or CUDA |
-| [dHBV](models/dhbv.md) | Neural parameter learning with a physical HBV simulation | CPU or CUDA |
+## [User Guide](guides/index.md)
 
-[Model selection](models/overview.md) explains the input requirements and
-supported tasks. [Experiment scenarios](guides/training.md#choose-your-workflow)
-clarify forecasting, resuming, and the current limits of model reuse.
+Prepare data, choose a model, and configure training and evaluation.
 
-## Results and reproducibility
+</div>
 
-Use [run outputs](reference/outputs.md) to find saved arrays and plots, and
-[troubleshooting](reference/troubleshooting.md#the-run-finishes-but-results-look-wrong)
-when a completed run looks wrong. The [validation record](reference/validation.md)
-identifies the checked source snapshot, environment, and executable examples.
-[Historical benchmarks](reference/benchmarks.md) retain their original numerical
-conventions and require separate reproduction before use as current scores.
+<div class="rf-route" markdown="1">
 
-## Acknowledgements
+## [Examples](tutorials/index.md)
 
-We thank [hydroDL](https://github.com/mhpi/hydroDL) and
-[NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) for ideas
-and insights that informed parts of this work.
-See [acknowledgements](acknowledgements.md) for related projects and
-scientific references.
+Follow complete workflows for CAMELS, Transformer, dHBV, or custom data.
+
+</div>
+
+<div class="rf-route" markdown="1">
+
+## [Reference](reference/index.md)
+
+Look up command-line options, data requirements, metrics, and saved outputs.
+
+</div>
+
+</div>
+
+## Models
+
+[LSTM](models/lstm.md) · [Transformer](models/transformer.md) ·
+[Differentiable HBV](models/dhbv.md)
+
+See [model selection](models/overview.md) for input requirements and supported
+tasks. For model integration, tests, and contributions, visit
+[Development](development/index.md).

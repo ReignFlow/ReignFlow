@@ -3,3 +3,15 @@
 {% block announce %}
   Documentation preview · Public code release is being prepared
 {% endblock %}
+
+{% block footer %}
+  <div class="rf-project-footer">
+    <nav class="md-grid rf-project-links" aria-label="Project information">
+      <a href="{{ 'acknowledgements/' | url }}">Acknowledgements</a>
+      <a href="{{ 'acknowledgements/#scientific-references' | url }}">Citations</a>
+      <a href="{{ 'acknowledgements/#ai-assistance' | url }}">AI assistance</a>
+      <a href="{{ config.repo_url }}">GitHub</a>
+    </nav>
+  </div>
+  {{ super() }}
+{% endblock %}

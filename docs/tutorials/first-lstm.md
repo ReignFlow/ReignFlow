@@ -4,6 +4,11 @@ Complete the [synthetic quick start](../getting-started/quickstart.md) first.
 This tutorial moves the same workflow to observed CAMELS data and separates a
 small installation check from a scientific comparison.
 
+## Before you start
+
+Run from the full source checkout with the ReignFlow environment active.
+Prepare a CAMELS NetCDF containing the variables and basins listed below.
+
 ## Prepare the input
 
 Build or locate [CAMELS.nc](../data/camels.md). From the repository root, set

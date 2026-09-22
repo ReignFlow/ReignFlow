@@ -8,7 +8,7 @@ for a first successful run.
 
 | What you want to do | Current support | Start here |
 |---|---|---|
-| Train on your own daily observations | Named NetCDF variables, observed targets, and explicit station/date selections | [Custom-data example](../data/custom-data.md) |
+| Train on your own daily observations | Named NetCDF variables, observed targets, and explicit station/date selections | [Custom-data example](../tutorials/custom-data.md) |
 | Compare LSTM, Transformer, or dHBV | Match the data and evaluation protocol; model-specific physical inputs and warm-up can differ | [Model selection](../models/overview.md), [benchmark context](../reference/benchmarks.md) |
 | Forecast after the input window | Supervised neural forecast experiment; reported daily metrics mix lead times | [Forecasting](forecast.md) |
 | Continue interrupted training | Exact resume keeps the original training plan; warm start begins a changed plan from saved weights | [Resume or warm start](resume-and-warm-start.md) |

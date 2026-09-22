@@ -37,23 +37,8 @@ requires `batch_x_time_stamp`; no additional NetCDF calendar variables are neede
 
 ## Run a CPU example
 
-First create the [quick-start data](../getting-started/quickstart.md#1-create-the-demonstration-data).
-Then run this complete command:
-
-<!-- example: transformer-train -->
-```bash
-python -m reignflow --task_name regression --model Transformer --data CAMELS \
-  --input_nc_file output/demo/CAMELS.nc --all_stations \
-  --time_series_variables daymet_prcp,daymet_tmean,daymet_pet \
-  --static_variables area_gages2,elev_mean \
-  --train_date_list 2000-01-01,2000-03-31 \
-  --val_date_list 2000-04-01,2000-04-30 \
-  --test_date_list 2000-05-01,2000-06-30 \
-  --seq_len 14 --pred_len 1 --d_model 16 \
-  --transformer_n_layers 1 --transformer_n_heads 4 --transformer_d_ff 32 \
-  --dropout 0 --batch_size 32 --epochs 1 --learning_rate 0.001 \
-  --do_eval --device cpu --seed 42 --output_dir output/demo/transformer
-```
+Follow the [Transformer example](../tutorials/transformer.md) for data creation,
+the complete training command, and output checks.
 
 ## Attention and forecasting
 

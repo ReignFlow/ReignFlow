@@ -30,6 +30,17 @@ from that verified result. Do not invent new defaults by editing generated table
 The generator limits model names and registry rows to the documented model
 list: LSTM, Transformer, and dHBV. Runtime registration remains separate.
 
+## Keep pages focused
+
+Getting Started leads to a first run. The User Guide explains concepts and
+practical choices; Examples provides complete workflows; Reference collects
+exact settings and artifact definitions. Development covers extension and
+maintenance. Link between these pages instead of repeating full commands.
+
+The acknowledgements page remains searchable and is linked from every footer.
+Its explicit `not_in_nav` entry keeps it outside the five main reading paths.
+Keep existing page URLs and section anchors when reorganizing content.
+
 ## Validation coverage
 
 The [validation record](../reference/validation.md) identifies the source

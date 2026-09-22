@@ -57,43 +57,53 @@ markdown_extensions:
 extra_css:
   - stylesheets/extra.css
 
+not_in_nav: |
+  /acknowledgements.md
+
 nav:
-  - Start:
+  - Getting Started:
       - Overview: index.md
       - Installation: getting-started/installation.md
       - Quick Start: getting-started/quickstart.md
-      - Acknowledgements: acknowledgements.md
-  - Data:
-      - CAMELS and Profiles: data/camels.md
-      - Your Own Daily Data: data/custom-data.md
-      - Select Stations: guides/station-selection.md
-      - Variables and Periods: guides/data-selection.md
-  - Models:
-      - Choose a Model: models/overview.md
-      - LSTM: models/lstm.md
-      - Transformer: models/transformer.md
-      - Differentiable HBV: models/dhbv.md
-  - Experiments:
-      - Workflow: guides/training.md
+  - User Guide:
+      - guides/index.md
+      - Data:
+          - CAMELS and Profiles: data/camels.md
+          - Your Own Daily Data: data/custom-data.md
+          - Select Stations: guides/station-selection.md
+          - Variables and Periods: guides/data-selection.md
+      - Models:
+          - Choose a Model: models/overview.md
+          - LSTM: models/lstm.md
+          - Transformer: models/transformer.md
+          - Differentiable HBV: models/dhbv.md
+      - Training and Evaluation:
+          - Experiment Workflow: guides/training.md
+          - Training Controls: guides/training-control.md
+          - Validation and Selection: guides/validation-and-model-selection.md
+          - Forecasting: guides/forecast.md
+          - GPU Jobs on Slurm: guides/hpc.md
+      - Reuse Models:
+          - Resume and Warm Start: guides/resume-and-warm-start.md
+          - Evaluate and Share: guides/evaluate-and-share.md
+          - HBV Parameter Files: guides/hbv-parameters.md
+      - Troubleshooting: reference/troubleshooting.md
+  - Examples:
+      - tutorials/index.md
       - LSTM on CAMELS: tutorials/first-lstm.md
-      - Train dHBV: tutorials/dhbv.md
-      - Training Controls: guides/training-control.md
-      - Validation and Selection: guides/validation-and-model-selection.md
-      - Forecasting: guides/forecast.md
-      - GPU Jobs on Slurm: guides/hpc.md
-  - Reuse Models:
-      - Resume and Warm Start: guides/resume-and-warm-start.md
-      - Evaluate and Share: guides/evaluate-and-share.md
-      - HBV Parameter Files: guides/hbv-parameters.md
+      - Transformer: tutorials/transformer.md
+      - Differentiable HBV: tutorials/dhbv.md
+      - Custom Daily Data: tutorials/custom-data.md
   - Reference:
+      - reference/index.md
       - CLI: reference/cli.md
       - Run Outputs: reference/outputs.md
       - Checkpoints and Provenance: guides/checkpoints.md
       - Metrics: reference/metrics.md
       - Validation Record: reference/validation.md
       - Benchmarks: reference/benchmarks.md
-      - Troubleshooting: reference/troubleshooting.md
   - Development:
+      - development/index.md
       - Add a Model: development/model-integration.md
       - Testing: development/testing.md
       - Documentation and Pages: development/documentation.md

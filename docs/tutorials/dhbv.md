@@ -9,6 +9,11 @@ The implementation is modified from the hydroDL-based dPL-HBV code. Read the
 [source and modifications](../models/dhbv.md#source-and-modifications) for its
 upstream attribution and scientific reference.
 
+## Before you start
+
+Complete [installation](../getting-started/installation.md) and run from the full
+source checkout with the environment active. This example uses CPU execution.
+
 ## Required alignment
 
 ```text
@@ -28,9 +33,14 @@ test time, so check your dates before starting a long training run.
 
 ## Run a small example
 
-Create the [quick-start data](../getting-started/quickstart.md#1-create-the-demonstration-data)
-first. This example trains on January–March, tests April–June, and validates
-on July–August; all periods are disjoint and the test follows training.
+Create the [quick-start data](../getting-started/quickstart.md#1-create-the-demonstration-data):
+
+```bash
+python examples/quickstart/create_demo_data.py --output output/demo/CAMELS.nc
+```
+
+This example trains on January–March, tests April–June, and validates on
+July–August; all periods are disjoint and the test follows training.
 
 <!-- example: dhbv-train -->
 ```bash
