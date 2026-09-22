@@ -73,6 +73,11 @@ The linked upstream repositories provide additional method references and
 their software citation instructions. CAMELS users should also cite the
 [data sources](data/camels.md).
 
+## AI assistance
+
+AI tools from OpenAI and Anthropic were used for language editing,
+documentation preparation, and assistance with code development and debugging.
+
 ## Notices and maintenance
 
 The code inventory above summarizes the full source checkout's `THIRD_PARTY_NOTICES.md`.
