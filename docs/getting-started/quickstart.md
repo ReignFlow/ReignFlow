@@ -60,27 +60,20 @@ The program also prints test NSE, KGE, correlation, and RMSE.
 | Time interval and units | 1 May–30 June 2000; runoff in mm/day |
 | Successful workflow | Training and testing finish, with finite predictions and metrics |
 
-![Observed and predicted synthetic runoff for the first basin after two LSTM training epochs](../assets/quickstart_runoff.png)
-
-This is an actual CPU run of the commands above. The optional script below
-adds dates and units to the same saved arrays. Two epochs can leave peaks
-poorly captured; the example does not establish hydrological prediction skill.
 The [validation record](../reference/validation.md) identifies the source
-snapshot and environment. Your scores can differ across environments.
+snapshot, environment, and output checks for this short synthetic run.
 
 | Metric | How to read it |
 |---|---|
 | NSE | 1 is a perfect match; 0 has the same squared error as predicting the observed mean over the evaluated samples; negative values are worse than that reference |
 | RMSE | Typical error magnitude in the target units; 0 is a perfect match. Here the unit is mm/day |
 
-Scores summarize all three basins by their median; the figure shows only the
-first basin. A short synthetic run may have low NSE even when installation
-and data alignment are correct. For real experiments, inspect the curves
-and [diagnose poor results](../reference/troubleshooting.md#the-run-finishes-but-results-look-wrong)
+Scores summarize all three basins by their median; `results/feature_Runoff.png`
+shows only the first basin. For real experiments, inspect the curves and [diagnose poor results](../reference/troubleshooting.md#the-run-finishes-but-results-look-wrong)
 before comparing model scores.
 
 <details markdown="1">
-<summary>Optional: recompute the scores and draw the annotated figure</summary>
+<summary>Optional: recompute the scores and plot your run</summary>
 
 This selects the most recent quick-start run in `output/demo/lstm/`.
 

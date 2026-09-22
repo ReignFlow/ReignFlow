@@ -13,10 +13,10 @@ currently contains documentation only; this is not an installable code release.
 | Output interpretation | Physical observations matched the input NetCDF on the documented dates; predictions and metrics were finite |
 | Custom data and HBV export | String station IDs retained leading zeros; saved arrays and HBV parameter dimensions matched the examples |
 | Documentation, CLI, and adapter checks | 15 tests passed; generated references matched the parser, model registry, and dataset profiles |
-| Strict website builds | Development and public-preview documentation both passed; optional tables/code and the result image rendered |
+| Strict website builds | Development and public-preview documentation both passed |
 
-The [quick-start figure](../getting-started/quickstart.md#3-inspect-the-predictions)
-comes from this run: prediction shape `[3, 61, 1]`, median NSE **−0.1450**,
+The [quick-start example](../getting-started/quickstart.md#3-inspect-the-predictions)
+produced prediction shape `[3, 61, 1]`, median NSE **−0.1450**,
 and median RMSE **0.7045 mm/day**. These are two-epoch results on artificial
 data, useful for checking the workflow rather than judging model accuracy.
 

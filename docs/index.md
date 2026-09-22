@@ -15,15 +15,15 @@ parameters for a differentiable HBV simulation.
 
 | Your goal | Start here | What you will get |
 |---|---|---|
-| Run a model for the first time | [Installation](getting-started/installation.md) → [Quick start](getting-started/quickstart.md) | A small CPU run and an explained prediction plot |
+| Run a model for the first time | [Installation](getting-started/installation.md) → [Quick start](getting-started/quickstart.md) | A small CPU run with saved predictions and output checks |
 | Use real observations or your own basins | [CAMELS tutorial](tutorials/first-lstm.md) or [custom data](data/custom-data.md) | A complete data-to-results workflow |
 | Compare models or extend the framework | [Experiment workflow](guides/training.md) → [validation record](reference/validation.md) | Supported scenarios, comparison requirements, and the scope of checked results |
 
 ## Start with a complete run
 
 The [quick start](getting-started/quickstart.md) has three steps: create
-synthetic data, train an LSTM, and inspect predictions. You can read the
-example plot now; running the commands requires the full source checkout.
+synthetic data, train an LSTM, and inspect predictions. Running the commands
+requires the full source checkout.
 After that, move to real data or [reload and share a model](guides/evaluate-and-share.md).
 
 ## Choose a model

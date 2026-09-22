@@ -94,8 +94,6 @@
       "RMSE": 0.7045067150446938
     },
     "target_units": "mm/day",
-    "figure": "quickstart_runoff.png",
-    "figure_sha256": "87619076ea9268ef9dafde1f129257d5e44723f389a99436924668b559e1c77a",
     "predictions_sha256": "e876ffed9a1c3efb96c060060985e3b0a689f251ce51f243422c427a54e83ca9",
     "observations_sha256": "d1bdf89768deb9469c22041eb5192bd26d923e6c39f50a4e2e8811017659fe2f"
   },
