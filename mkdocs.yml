@@ -38,16 +38,16 @@ theme:
     - search.highlight
     - content.code.copy
     - content.tabs.link
+  # light first and no media queries: the site opens light for everyone; the
+  # toggle switches to dark and the reader's choice is remembered
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    - scheme: default
       primary: white
       accent: custom
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       primary: custom
       accent: custom
       toggle:
