@@ -1,4 +1,4 @@
-site_name: ReignFlow Documentation Preview
+site_name: ReignFlow
 site_description: Preview of the ReignFlow user documentation; the public code release is being prepared
 site_url: https://reignflow.github.io/ReignFlow/
 repo_url: https://github.com/ReignFlow/ReignFlow
@@ -18,8 +18,12 @@ theme:
   name: material
   custom_dir: overrides
   language: en
+  favicon: assets/favicon.svg
+  font:
+    text: Inter
+    code: JetBrains Mono
   icon:
-    logo: material/water-outline
+    logo: reignflows/mark
     repo: fontawesome/brands/github
   features:
     - navigation.instant
@@ -32,9 +36,20 @@ theme:
     - content.code.copy
     - content.tabs.link
   palette:
-    scheme: default
-    primary: custom
-    accent: custom
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
 
 plugins:
   - search

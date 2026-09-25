@@ -1,84 +1,159 @@
+/* ReignFlow documentation: the ReignFlows palette (reignflows.com) on Material
+   for MkDocs. Light scheme = white header on white; dark scheme = the site's
+   navy. Brand blue #1671d9 / #78baff comes from the ReignFlows mark. */
+
 :root {
-  --md-primary-fg-color: #0f6f67;
-  --md-primary-fg-color--light: #16877d;
-  --md-primary-fg-color--dark: #0a514c;
-  --md-accent-fg-color: #d95648;
-  --rf-ink: #172321;
-  --rf-muted: #53635f;
-  --rf-line: #d6e0dd;
-  --rf-surface: #f5f8f7;
-  --rf-sun: #d99d24;
+  --rf-brand: #1671d9;
+  --rf-brand-strong: #0f59ad;
+  --rf-line: #e3e8ef;
+  --rf-surface: #f6f8fb;
+  --rf-muted: #5b6678;
 }
 
-* {
-  letter-spacing: 0 !important;
+[data-md-color-scheme="default"] {
+  --md-accent-fg-color: #0161ef;
+  --md-accent-fg-color--transparent: rgb(1 97 239 / 10%);
+  --md-typeset-a-color: var(--rf-brand);
+  --md-code-bg-color: var(--rf-surface);
+  --md-footer-bg-color: var(--rf-surface);
+  --md-footer-bg-color--dark: #eef2f7;
+  --md-footer-fg-color: #1f2937;
+  --md-footer-fg-color--light: var(--rf-muted);
+  --md-footer-fg-color--lighter: #8a94a6;
 }
 
-body {
-  color: var(--rf-ink);
+[data-md-color-scheme="slate"] {
+  --rf-brand: #78baff;
+  --rf-brand-strong: #a9d2ff;
+  --rf-line: rgb(255 255 255 / 9%);
+  --rf-surface: #0a0f2c;
+  --rf-muted: #9aa8c2;
+  --md-default-bg-color: #030620;
+  --md-default-bg-color--light: rgb(3 6 32 / 54%);
+  --md-default-bg-color--lighter: rgb(3 6 32 / 26%);
+  --md-default-bg-color--lightest: rgb(3 6 32 / 7%);
+  --md-default-fg-color: #e5ecf6;
+  --md-default-fg-color--light: #b7c2d6;
+  --md-primary-fg-color: #030620;
+  --md-primary-fg-color--light: #0a0f2c;
+  --md-primary-fg-color--dark: #02041a;
+  --md-primary-bg-color: #e5ecf6;
+  --md-primary-bg-color--light: rgb(229 236 246 / 70%);
+  --md-accent-fg-color: #9cc9ff;
+  --md-accent-fg-color--transparent: rgb(120 186 255 / 12%);
+  --md-typeset-a-color: var(--rf-brand);
+  --md-code-bg-color: var(--rf-surface);
+  --md-footer-bg-color: #02041a;
+  --md-footer-bg-color--dark: #010312;
 }
+
+/* ---- header, tabs, announcement ------------------------------------------ */
 
 .md-header,
 .md-tabs {
-  background: #123f3b;
+  box-shadow: none;
 }
+
+.md-header {
+  border-bottom: 1px solid var(--rf-line);
+}
+
+.md-header--shadow {
+  box-shadow: 0 0.25rem 1rem rgb(15 23 42 / 6%);
+}
+
+.md-tabs {
+  border-bottom: 1px solid var(--rf-line);
+}
+
+.md-header__button.md-logo {
+  color: var(--rf-brand);
+}
+
+.md-header__button.md-logo svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.md-header__topic:first-child {
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.md-tabs__link {
+  font-size: 0.72rem;
+  opacity: 0.8;
+}
+
+.md-tabs__item--active .md-tabs__link,
+.md-tabs__link:hover {
+  color: var(--rf-brand);
+  opacity: 1;
+}
+
+.md-banner {
+  background: #eaf3ff;
+  color: #0f3d73;
+  border-bottom: 1px solid #d4e5fb;
+}
+
+[data-md-color-scheme="slate"] .md-banner {
+  background: #0b1a3a;
+  color: #bcd6ff;
+  border-bottom-color: rgb(120 186 255 / 16%);
+}
+
+.md-banner__inner {
+  font-size: 0.68rem;
+  margin: 0.45rem auto;
+}
+
+/* ---- text ---------------------------------------------------------------- */
 
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
-  color: var(--rf-ink);
-  font-weight: 650;
+  color: var(--md-default-fg-color);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .md-typeset h1 {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.6rem;
 }
 
 .md-typeset a {
   text-underline-offset: 0.16em;
 }
 
-.md-typeset code,
-.md-typeset pre,
-.md-typeset .highlight {
-  border-radius: 4px;
+.md-nav__link--active,
+.md-nav__link:is(:focus, :hover) {
+  color: var(--rf-brand);
+}
+
+/* ---- code and tables ----------------------------------------------------- */
+
+.md-typeset code {
+  border-radius: 0.3rem;
+}
+
+.md-typeset pre > code {
+  border: 1px solid var(--rf-line);
+  border-radius: 0.5rem;
 }
 
 .md-typeset table:not([class]) {
   border: 1px solid var(--rf-line);
-  border-radius: 4px;
+  border-radius: 0.5rem;
   box-shadow: none;
+  overflow: hidden;
 }
 
-.rf-intro {
-  max-width: 58rem;
-  padding: 0.3rem 0 1.1rem;
+.md-typeset table:not([class]) th {
+  background: var(--rf-surface);
 }
 
-.rf-intro__lead {
-  max-width: 48rem;
-  color: var(--rf-muted);
-  font-size: 1.08rem;
-  line-height: 1.65;
-}
-
-.rf-figure {
-  margin: 1rem 0 1.7rem;
-}
-
-.rf-figure img {
-  display: block;
-  width: 100%;
-  border: 1px solid var(--rf-line);
-  border-radius: 6px;
-  background: #ffffff;
-}
-
-.rf-figure figcaption {
-  margin-top: 0.45rem;
-  color: var(--rf-muted);
-  font-size: 0.78rem;
-}
+/* ---- landing page route cards (docs/index.md) ---------------------------- */
 
 .rf-routes {
   display: grid;
@@ -91,34 +166,8 @@ body {
   min-width: 0;
   padding: 0.95rem 1rem;
   border: 1px solid var(--rf-line);
-  border-left: 4px solid var(--md-primary-fg-color);
-  border-radius: 6px;
-  background: #ffffff;
-}
-
-.rf-route:nth-child(2) {
-  border-left-color: var(--md-accent-fg-color);
-}
-
-.rf-route:nth-child(3) {
-  border-left-color: var(--rf-sun);
-}
-
-.rf-route strong,
-.rf-route span {
-  display: block;
-  overflow-wrap: anywhere;
-}
-
-.rf-route span {
-  margin-top: 0.35rem;
-  color: var(--rf-muted);
-  font-size: 0.82rem;
-  line-height: 1.45;
-}
-
-.rf-route:nth-child(4) {
-  border-left-color: var(--rf-ink);
+  border-radius: 0.6rem;
+  background: var(--md-default-bg-color);
 }
 
 .md-typeset .rf-route h2 {
@@ -133,15 +182,11 @@ body {
   line-height: 1.55;
 }
 
-.rf-route a:focus-visible,
-.rf-project-links a:focus-visible {
-  outline: 2px solid var(--md-primary-fg-color);
-  outline-offset: 3px;
-}
+/* ---- project footer (overrides/main.html) -------------------------------- */
 
 .rf-project-footer {
   border-top: 1px solid var(--rf-line);
-  background: var(--rf-surface);
+  background: var(--md-footer-bg-color);
 }
 
 .rf-project-links {
@@ -153,32 +198,21 @@ body {
 }
 
 .rf-project-links a {
-  color: var(--md-primary-fg-color);
-  text-decoration: underline;
-  text-underline-offset: 0.16em;
+  color: var(--rf-muted);
+  text-decoration: none;
 }
 
-.rf-contract {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem 1.2rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--rf-line);
-  border-radius: 6px;
-  background: var(--rf-surface);
+.rf-project-links a:hover {
+  color: var(--rf-brand);
 }
 
-.rf-contract p {
-  margin: 0;
+.rf-project-links a:focus-visible {
+  outline: 2px solid var(--rf-brand);
+  outline-offset: 3px;
 }
 
 @media screen and (max-width: 52rem) {
-  .rf-routes,
-  .rf-contract {
+  .rf-routes {
     grid-template-columns: 1fr;
-  }
-
-  .rf-intro__lead {
-    font-size: 1rem;
   }
 }
