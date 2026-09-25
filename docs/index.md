@@ -1,56 +1,65 @@
 ---
 hide:
+  - navigation
   - toc
 ---
 
+<div class="rf-hero" markdown="1">
+
+<p class="rf-hero__eyebrow">Documentation preview</p>
+
 # ReignFlow
 
-ReignFlow trains and evaluates daily rainfall–runoff models from NetCDF data,
-with a shared workflow for data preparation, training, and evaluation.
+<p class="rf-hero__lead">Train and evaluate daily rainfall–runoff models from NetCDF data,
+with a shared workflow for data preparation, training, and evaluation.</p>
 
-This documentation preview describes the full source checkout; the public
-repository currently contains documentation only.
+[Get started](getting-started/installation.md){ .md-button .md-button--primary }
+[Quick start](getting-started/quickstart.md){ .md-button }
 
-<div class="rf-routes" markdown="1">
-
-<div class="rf-route" markdown="1">
-
-## [Getting Started](getting-started/installation.md)
-
-Set up the environment and complete your first small CPU run.
+<p class="rf-hero__note">This documentation preview describes the full source checkout; the public
+repository currently contains documentation only.</p>
 
 </div>
 
-<div class="rf-route" markdown="1">
+## Start here
 
-## [User Guide](guides/index.md)
+<div class="grid cards rf-grid-2" markdown="1">
 
-Prepare data, choose a model, and configure training and evaluation.
+-   :material-rocket-launch-outline:{ .lg } __[Getting Started](getting-started/installation.md)__
 
-</div>
+    Set up the environment and complete your first small CPU run.
 
-<div class="rf-route" markdown="1">
+-   :material-book-open-variant:{ .lg } __[User Guide](guides/index.md)__
 
-## [Examples](tutorials/index.md)
+    Prepare data, choose a model, and configure training and evaluation.
 
-Follow complete workflows for CAMELS, Transformer, dHBV, or custom data.
+-   :material-notebook-outline:{ .lg } __[Examples](tutorials/index.md)__
 
-</div>
+    Follow complete workflows for CAMELS, Transformer, dHBV, or custom data.
 
-<div class="rf-route" markdown="1">
+-   :material-file-document-outline:{ .lg } __[Reference](reference/index.md)__
 
-## [Reference](reference/index.md)
-
-Look up command-line options, data requirements, metrics, and saved outputs.
-
-</div>
+    Look up command-line options, data requirements, metrics, and saved outputs.
 
 </div>
 
 ## Models
 
-[LSTM](models/lstm.md) · [Transformer](models/transformer.md) ·
-[Differentiable HBV](models/dhbv.md)
+<div class="grid cards" markdown="1">
+
+-   __[LSTM](models/lstm.md)__
+
+    The first rainfall–runoff baseline for a new dataset.
+
+-   __[Transformer](models/transformer.md)__
+
+    Compare attention with recurrent modeling.
+
+-   __[Differentiable HBV](models/dhbv.md)__
+
+    Learn the parameters of a differentiable HBV simulation.
+
+</div>
 
 See [model selection](models/overview.md) for input requirements and supported
 tasks. For model integration, tests, and contributions, visit

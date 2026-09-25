@@ -28,9 +28,12 @@ theme:
   features:
     - navigation.instant
     - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.footer
     - navigation.sections
     - navigation.indexes
     - navigation.top
+    - toc.follow
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -62,6 +65,9 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
@@ -76,8 +82,8 @@ not_in_nav: |
   /acknowledgements.md
 
 nav:
+  - Home: index.md
   - Getting Started:
-      - Overview: index.md
       - Installation: getting-started/installation.md
       - Quick Start: getting-started/quickstart.md
   - User Guide:

@@ -153,33 +153,95 @@
   background: var(--rf-surface);
 }
 
-/* ---- landing page route cards (docs/index.md) ---------------------------- */
+/* ---- landing page (docs/index.md) --------------------------------------- */
 
-.rf-routes {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-  margin: 1.1rem 0 1.8rem;
+.rf-hero {
+  max-width: 44rem;
+  padding: 1.2rem 0 1rem;
 }
 
-.rf-route {
-  min-width: 0;
-  padding: 0.95rem 1rem;
+.md-typeset .rf-hero h1 {
+  margin: 0.2rem 0 0.8rem;
+  font-size: 2.6rem;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.md-typeset .rf-hero__eyebrow {
+  margin: 0;
+  color: var(--rf-brand);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.md-typeset .rf-hero__lead {
+  margin: 0 0 1.4rem;
+  color: var(--rf-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.md-typeset .rf-hero__note {
+  margin: 1.2rem 0 0;
+  color: var(--rf-muted);
+  font-size: 0.7rem;
+}
+
+.md-typeset .rf-hero .md-button {
+  margin: 0 0.5rem 0.5rem 0;
+  padding: 0.55em 1.4em;
+  border: 1px solid var(--rf-line);
+  border-radius: 999px;
+  color: var(--md-default-fg-color);
+  font-size: 0.78rem;
+}
+
+.md-typeset .rf-hero .md-button:is(:hover, :focus) {
+  border-color: var(--rf-brand);
+  background: transparent;
+  color: var(--rf-brand);
+}
+
+.md-typeset .rf-hero .md-button--primary,
+.md-typeset .rf-hero .md-button--primary:is(:hover, :focus) {
+  border-color: var(--rf-brand);
+  background: var(--rf-brand);
+  color: var(--md-default-bg-color);
+}
+
+.md-typeset .rf-hero .md-button--primary:is(:hover, :focus) {
+  border-color: var(--rf-brand-strong);
+  background: var(--rf-brand-strong);
+}
+
+/* four entry points read better as 2 x 2 than as 3 + 1 */
+.md-typeset .grid.rf-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+.md-typeset .grid.cards > ul > li {
   border: 1px solid var(--rf-line);
   border-radius: 0.6rem;
-  background: var(--md-default-bg-color);
+  box-shadow: none;
+  transition: border-color 125ms;
 }
 
-.md-typeset .rf-route h2 {
-  margin: 0 0 0.45rem;
-  font-size: 1rem;
+.md-typeset .grid.cards > ul > li:is(:hover, :focus-within) {
+  border-color: var(--rf-brand);
+  box-shadow: none;
 }
 
-.md-typeset .rf-route p {
-  margin: 0;
+.md-typeset .grid.cards .lg {
+  margin-right: 0.3rem;
+  color: var(--rf-brand);
+  vertical-align: -0.35em;
+}
+
+.md-typeset .grid.cards p:last-child {
   color: var(--rf-muted);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  font-size: 0.78rem;
 }
 
 /* ---- project footer (overrides/main.html) -------------------------------- */
@@ -211,8 +273,8 @@
   outline-offset: 3px;
 }
 
-@media screen and (max-width: 52rem) {
-  .rf-routes {
-    grid-template-columns: 1fr;
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .rf-hero h1 {
+    font-size: 2rem;
   }
 }
